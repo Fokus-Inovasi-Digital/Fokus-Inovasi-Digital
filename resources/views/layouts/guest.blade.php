@@ -13,6 +13,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style> #nprogress .bar { background: red !important; } </style>
         @livewireStyles
     </head>
     <body class="font-sans text-gray-900 antialiased">
