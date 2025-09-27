@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -20,7 +21,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
+        'role'
     ];
 
     /**
@@ -44,5 +47,37 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function articles(): HasMany
+    {
+        return $this->hasMany(Article::class, 'author_id');
+    }
+    public function services(): HasMany
+    {
+        return $this->hasMany(Service::class, 'created_by');
+    }
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class, 'created_by');
+    }
+    public function careers(): HasMany
+    {
+        return $this->hasMany(Career::class, 'created_by');
+    }
+    public function partners(): HasMany
+    {
+        return $this->hasMany(Partner::class, 'created_by');
+    }
+    public function feedbacks(): HasMany
+    {
+        return $this->hasMany(Feedback::class);
+    }
+    public function jobApplications(): HasMany
+    {
+        return $this->hasMany(JobApplication::class);
+    }
+    public function contactMessages(): HasMany
+    {
+        return $this->hasMany(ContactMessage::class, 'user_id');
     }
 }
