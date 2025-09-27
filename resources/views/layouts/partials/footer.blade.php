@@ -15,7 +15,7 @@
                 </p>
                 <div class="flex space-x-4">
                     <a href="https://www.linkedin.com/company/fokus-id" class="text-gray-400 hover:text-red-400 transition-colors">LinkedIn</a>
-                    <a href="#" class="text-gray-400 hover:text-red-400 transition-colors">WhatsApp</a>
+                    <a href="https://api.whatsapp.com/send/?phone=6281292432654&text=Halo+PT+Fokus+Inovasi+Digital%2C+Saya+tertarik+untuk+mendapatkan+informasi+lebih+lanjut+mengenai+layanan+yang+kami+tawarkan.+Bisa+dibantu+untuk+diskusi" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">WhatsApp</a>
                     <a href="https://github.com/Fokus-Inovasi-Digital" class="text-gray-400 hover:text-red-400 transition-colors">GitHub</a>
                 </div>
             </div>
