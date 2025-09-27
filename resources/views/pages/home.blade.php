@@ -41,9 +41,9 @@
                 <a href="#contact" class="btn-primary text-lg px-8 py-3">
                     <span class="relative z-10">Get Started</span>
                 </a>
-                <a href="#"
+                <a href="/projects"
                     class="border border-gray-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-all">
-                    View Portfolio
+                    View Projects
                 </a>
             </div>
         </div>

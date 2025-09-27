@@ -17,8 +17,44 @@
                     </a>
                     <a href="/services"
                         class="border border-gray-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-all">
-                       or View Our Services &rarr;
+                        or View Our Services &rarr;
                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="py-10">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 animate-blur-in">
+                    Our <span class="gradient-text">Partners</span>
+                </h2>
+            </div>
+
+            <div class="partner-carousel overflow-hidden">
+                <div class="flex space-x-12 animate-scroll">
+                    <div class="flex-shrink-0 w-32 h-32 glass rounded-xl flex items-center justify-center cursor-pointer partner-logo"
+                        onclick="openPartnerModal('Partner 1', 'Technology partner specializing in cloud solutions.')">
+                        <div class="text-2xl font-bold gradient-text">TECH</div>
+                    </div>
+                    <div class="flex-shrink-0 w-32 h-32 glass rounded-xl flex items-center justify-center cursor-pointer partner-logo"
+                        onclick="openPartnerModal('Partner 2', 'Financial services integration partner.')">
+                        <div class="text-2xl font-bold gradient-text">BANK</div>
+                    </div>
+                    <div class="flex-shrink-0 w-32 h-32 glass rounded-xl flex items-center justify-center cursor-pointer partner-logo"
+                        onclick="openPartnerModal('Partner 3', 'Cloud infrastructure and security partner.')">
+                        <div class="text-2xl font-bold gradient-text">CLOUD</div>
+                    </div>
+                    <div class="flex-shrink-0 w-32 h-32 glass rounded-xl flex items-center justify-center cursor-pointer partner-logo"
+                        onclick="openPartnerModal('Partner 4', 'AI and machine learning solutions partner.')">
+                        <div class="text-2xl font-bold gradient-text">AI</div>
+                    </div>
+                    <div class="flex-shrink-0 w-32 h-32 glass rounded-xl flex items-center justify-center cursor-pointer partner-logo"
+                        onclick="openPartnerModal('Partner 5', 'Digital marketing and analytics partner.')">
+                        <div class="text-2xl font-bold gradient-text">MARK</div>
+                    </div>
                 </div>
             </div>
         </div>
