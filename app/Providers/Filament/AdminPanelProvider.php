@@ -28,7 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->sidebarCollapsibleOnDesktop(true)
             ->id('admin')
             ->path('admin')
-            ->login()
+            // ->login()
             ->favicon('https://cdn-icons-png.flaticon.com/512/5045/5045878.png')
             ->colors([
                 'primary' => '#fc6666',
