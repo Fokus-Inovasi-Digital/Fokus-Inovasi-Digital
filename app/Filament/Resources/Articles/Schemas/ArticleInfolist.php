@@ -17,6 +17,8 @@ class ArticleInfolist
                 ImageEntry::make('image'),
                 TextEntry::make('content')
                     ->columnSpanFull(),
+                TextEntry::make('category')
+                    ->badge(),
                 TextEntry::make('status')
                     ->badge(),
                 TextEntry::make('published_at')

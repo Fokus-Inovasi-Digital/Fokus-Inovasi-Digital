@@ -7,12 +7,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
-
-// Import Model yang dibutuhkan
 use App\Models\User;
 use App\Models\CompanyProfile;
-use App\Models\Service;
-use App\Models\Project;
+use App\Models\Solution;
 use App\Models\Article;
 use App\Models\Career;
 use App\Models\Partner;
@@ -34,7 +31,7 @@ class DummySeeder extends Seeder
         // --- 1. Buat User Admin & User Biasa ---
         $adminUser = User::create([
             'name' => 'Super Admin',
-            'email' => 'admin@fokusinovasi.com',
+            'email' => 'admin@fokusinovasidigital.com',
             'phone' => '081122334455',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
@@ -87,51 +84,58 @@ class DummySeeder extends Seeder
 
         // --- 3. Services (Sesuai Service Section) ---
         $serviceList = [
-            ['title' => 'Cloud Solutions', 'icon' => '☁️', 'description' => 'Scalable cloud infrastructure and migration services for modern businesses.'],
-            ['title' => 'Cybersecurity', 'icon' => '🔒', 'description' => 'Comprehensive security solutions to protect your digital assets.'],
-            ['title' => 'Analytics', 'icon' => '📊', 'description' => 'Business intelligence and analytics platforms for informed decision making.'],
-            ['title' => 'Web Development', 'icon' => '💻', 'description' => 'Custom website and web application development with modern frameworks.'],
-            ['title' => 'Mobile App Development', 'icon' => '📱', 'description' => 'Building native and cross-platform mobile applications.'],
-            ['title' => 'AI & Machine Learning', 'icon' => '🧠', 'description' => 'Implementing intelligent systems and data models.'],
+            // Category 'service'
+            ['title' => 'Cloud Solutions', 'description' => 'Scalable cloud infrastructure and migration services for modern businesses.', 'category' => 'service', 'status' => 'published'],
+            ['title' => 'Cybersecurity', 'description' => 'Comprehensive security solutions to protect your digital assets.', 'category' => 'service', 'status' => 'published'],
+            ['title' => 'Analytics', 'description' => 'Business intelligence and analytics platforms for informed decision making.', 'category' => 'service', 'status' => 'draft'],
+            ['title' => 'Web Development', 'description' => 'Custom website and web application development with modern frameworks.', 'category' => 'service', 'status' => 'published'],
+            ['title' => 'Mobile App Development', 'description' => 'Building native and cross-platform mobile applications.', 'category' => 'service', 'status' => 'draft'],
+            ['title' => 'AI & Machine Learning', 'description' => 'Implementing intelligent systems and data models.', 'category' => 'service', 'status' => 'published'],
+
+            // Category 'infrastructure'
+            ['title' => 'Cloud Hosting', 'description' => 'High-performance cloud hosting solutions for businesses of all sizes.', 'category' => 'infrastructure', 'status' => 'published'],
+            ['title' => 'Data Center Services', 'description' => 'Reliable data center services with high uptime and security.', 'category' => 'infrastructure', 'status' => 'published'],
+            ['title' => 'Networking Solutions', 'description' => 'End-to-end networking solutions for optimal connectivity.', 'category' => 'infrastructure', 'status' => 'draft'],
+            ['title' => 'Disaster Recovery', 'description' => 'Data recovery services to ensure business continuity during emergencies.', 'category' => 'infrastructure', 'status' => 'published'],
+
+            // Category 'product'
+            ['title' => 'SaaS Platform', 'description' => 'A comprehensive Software-as-a-Service platform to streamline business operations.', 'category' => 'product', 'status' => 'published'],
+            ['title' => 'Mobile App', 'description' => 'Innovative mobile app designed to enhance customer experience.', 'category' => 'product', 'status' => 'draft'],
+            ['title' => 'Analytics Tool', 'description' => 'Advanced data analytics tool to gain insights and drive decision-making.', 'category' => 'product', 'status' => 'published'],
+            ['title' => 'Project Management Software', 'description' => 'A powerful tool to manage and track your projects and teams.', 'category' => 'product', 'status' => 'draft'],
         ];
 
         foreach ($serviceList as $data) {
-            Service::create([
+            Solution::create([
                 'title' => $data['title'],
                 'slug' => Str::slug($data['title']),
                 'short_description' => $data['description'],
                 'content' => $faker->paragraphs(5, true),
                 'is_featured' => $faker->boolean(40),
+                'category' => $data['category'],
+                'status' => $data['status'],
+                'published_at' => $data['status'] === 'published' ? now() : null,
                 'created_by' => $adminUser->id,
-                'updated_by' => $adminUser->id,
+                'updated_by' => null,
             ]);
         }
 
-        // --- 4. Projects (Sesuai Portfolio Section) ---
-        $projectTitles = [
-            ['title' => 'E-Commerce Platform', 'desc' => 'Modern e-commerce solution with advanced features'],
-            ['title' => 'Banking App', 'desc' => 'Secure mobile banking application'],
-            ['title' => 'IoT Dashboard', 'desc' => 'Real-time IoT monitoring dashboard'],
-        ];
-
-        foreach ($projectTitles as $data) {
-            Project::create([
-                'title' => $data['title'],
-                'slug' => Str::slug($data['title']),
-                'short_description' => $data['desc'],
-                'content' => $faker->paragraphs(4, true),
-                'gallery' => json_encode(['img1.jpg', 'img2.jpg']),
-                'is_featured' => $faker->boolean(60),
-                'created_by' => $adminUser->id,
-                'updated_by' => $adminUser->id,
-            ]);
-        }
-
-        // --- 5. Articles (Sesuai Blog Section) ---
+        // --- 4. Articles (Sesuai Blog Section) ---
         $articleTitles = [
-            ['title' => 'The Future of AI in Business', 'date' => now()->subDays(12)],
-            ['title' => 'Cloud Migration Best Practices', 'date' => now()->subDays(17)],
-            ['title' => 'Cybersecurity in 2024', 'date' => now()->subDays(22)],
+            // Kategori 'article'
+            ['title' => 'The Future of AI in Business', 'category' => 'article', 'date' => now()->subDays(12)],
+            ['title' => 'Cloud Migration Best Practices', 'category' => 'article', 'date' => now()->subDays(17)],
+            ['title' => 'Cybersecurity in 2024', 'category' => 'article', 'date' => now()->subDays(22)],
+
+            // Kategori 'activity'
+            ['title' => 'Tech Conference 2024: What to Expect', 'category' => 'activity', 'date' => now()->subDays(5)],
+            ['title' => 'AI Workshop for Developers', 'category' => 'activity', 'date' => now()->subDays(10)],
+            ['title' => 'Cybersecurity Seminar: The Need for Awareness', 'category' => 'activity', 'date' => now()->subDays(15)],
+
+            // Kategori 'csr' (Corporate Social Responsibility)
+            ['title' => 'Our Commitment to Green Technology', 'category' => 'csr', 'date' => now()->subDays(8)],
+            ['title' => 'Community Outreach: Bringing Tech to Rural Areas', 'category' => 'csr', 'date' => now()->subDays(13)],
+            ['title' => 'Supporting Education: Tech Scholarships for Students', 'category' => 'csr', 'date' => now()->subDays(18)],
         ];
 
         foreach ($articleTitles as $data) {
@@ -140,15 +144,17 @@ class DummySeeder extends Seeder
                 'slug' => Str::slug($data['title']),
                 'image' => 'article_' . Str::slug($data['title']) . '.jpg',
                 'content' => $faker->paragraphs(6, true),
+                'gallery' => json_encode([]),
+                'category' => $data['category'],
                 'status' => 'published',
                 'published_at' => $data['date'],
                 'author_id' => $adminUser->id,
-                'updated_by' => $adminUser->id,
+                'updated_by' => null,
             ]);
         }
 
 
-        // --- 6. Partners (Sesuai Partners Section) ---
+        // --- 5. Partners (Sesuai Partners Section) ---
         $partnerNames = [
             ['name' => 'Tech Solutions Corp', 'logo' => 'TECH'],
             ['name' => 'Bank Sentosa', 'logo' => 'BANK'],
@@ -169,7 +175,7 @@ class DummySeeder extends Seeder
         }
 
 
-        // --- 7. Careers (Job Careers) ---
+        // --- 6. Careers (Job Careers) ---
         $career = Career::create([
             'title' => 'Senior Laravel Developer',
             'slug' => 'senior-laravel-developer',
@@ -193,7 +199,7 @@ class DummySeeder extends Seeder
         ]);
 
 
-        // --- 8. Job Application (Pelamar) ---
+        // --- 7. Job Application (Pelamar) ---
         JobApplication::create([
             'career_id' => $career->id,
             'user_id' => $regularUser->id,
@@ -209,7 +215,7 @@ class DummySeeder extends Seeder
         ]);
 
 
-        // --- 9. Contact Messages (Pesan dari Contact Form) ---
+        // --- 8. Contact Messages (Pesan dari Contact Form) ---
         ContactMessage::create([
             'name' => 'Siti Aisyah',
             'email' => 'siti.aisyah@client.com',
@@ -222,7 +228,7 @@ class DummySeeder extends Seeder
         ]);
 
 
-        // --- 10. Feedbacks (Dari User Login) ---
+        // --- 9. Feedbacks (Dari User Login) ---
         Feedback::create([
             'user_id' => $regularUser->id,
             'subject' => 'Request Fitur Dashboard',
@@ -230,7 +236,7 @@ class DummySeeder extends Seeder
             'type' => 'feature_request',
             'status' => 'new',
         ]);
-        
+
         // Kembalikan Foreign Key Checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

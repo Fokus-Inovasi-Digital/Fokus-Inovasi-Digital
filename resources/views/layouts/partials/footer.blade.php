@@ -57,6 +57,6 @@
     </div>
 
     <div class="border-t border-gray-800 py-6 text-center text-gray-400">
-        <p>&copy; 2024 PT Fokus Inovasi Digital. All rights reserved.</p>
+        <p>&copy; {{ date('Y') }} PT Fokus Inovasi Digital. All rights reserved.</p>
     </div>
 </footer>

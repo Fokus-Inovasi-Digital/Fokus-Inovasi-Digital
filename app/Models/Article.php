@@ -15,6 +15,8 @@ class Article extends Model
         'slug',
         'image',
         'content',
+        'gallery',
+        'category',
         'status',
         'published_at',
         'author_id',
@@ -22,6 +24,7 @@ class Article extends Model
     ];
 
     protected $casts = [
+        'gallery' => 'array',
         'published_at' => 'datetime',
         'status' => 'string',
     ];

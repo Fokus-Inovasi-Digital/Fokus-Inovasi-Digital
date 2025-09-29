@@ -4,9 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn() => view('pages.home'))->name('home');
-Route::get('/services', fn() => view('pages.services.index'))->name('services');
-Route::get('/projects', fn() => view('pages.projects.index'))->name('projects');
-Route::get('/articles', fn() => view('pages.articles.index'))->name('articles');
+Route::get('/solutions', fn() => view('pages.solutions.index'))->name('solutions');
+// Route::get('/projects', fn() => view('pages.projects.index'))->name('projects');
+Route::get('/news', fn() => view('pages.articles.index'))->name('articles');
 Route::get('/careers', fn() => view('pages.careers.index'))->name('careers');
 Route::get('/contact', fn() => view('pages.contact'))->name('contact');
 

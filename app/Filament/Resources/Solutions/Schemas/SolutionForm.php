@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Filament\Resources\Services\Schemas;
+namespace App\Filament\Resources\Solutions\Schemas;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
-class ServiceForm
+class SolutionForm
 {
     public static function configure(Schema $schema): Schema
     {

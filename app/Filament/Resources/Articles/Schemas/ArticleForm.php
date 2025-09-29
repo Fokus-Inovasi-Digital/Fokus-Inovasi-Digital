@@ -25,6 +25,11 @@ class ArticleForm
                 Textarea::make('content')
                     ->required()
                     ->columnSpanFull(),
+                TextInput::make('gallery'),
+                Select::make('category')
+                    ->options(['article' => 'Article', 'activity' => 'Activity', 'csr' => 'Csr'])
+                    ->default('article')
+                    ->required(),
                 Select::make('status')
                     ->options(['draft' => 'Draft', 'published' => 'Published', 'archived' => 'Archived'])
                     ->default('draft')

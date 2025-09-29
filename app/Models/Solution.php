@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Service extends Model
+class Solution extends Model
 {
     use HasFactory;
 
@@ -16,11 +16,15 @@ class Service extends Model
         'short_description',
         'content',
         'is_featured',
+        'category',
+        'status',
+        'published_at',
         'created_by',
         'updated_by',
     ];
 
     protected $casts = [
+        'published_at' => 'datetime',
         'is_featured' => 'boolean',
     ];
     public function createdBy(): BelongsTo

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\Projects\Pages;
+namespace App\Filament\Resources\Solutions\Pages;
 
-use App\Filament\Resources\Projects\ProjectResource;
+use App\Filament\Resources\Solutions\SolutionResource;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditProject extends EditRecord
+class EditSolution extends EditRecord
 {
-    protected static string $resource = ProjectResource::class;
+    protected static string $resource = SolutionResource::class;
 
     protected function getHeaderActions(): array
     {

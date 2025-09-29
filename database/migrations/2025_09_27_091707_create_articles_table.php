@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->string('slug')->unique();
             $table->string('image');
             $table->longText('content');
+            $table->json('gallery')->nullable();
+            $table->enum('category', ['article', 'activity', 'csr'])->default('article');
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
             $table->timestamp('published_at')->nullable();
             $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
