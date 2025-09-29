@@ -2,9 +2,13 @@
 
 namespace App\Filament\Resources\CompanyProfiles\Schemas;
 
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class CompanyProfileForm
 {
@@ -12,6 +16,17 @@ class CompanyProfileForm
     {
         return $schema
             ->components([
+                FileUpload::make('logo')
+                    ->image()
+                    ->required()
+                    ->disk('public')
+                    ->directory('logo')
+                    ->label('Company Logo')
+                    ->columnSpanFull()
+                    ->getUploadedFileNameForStorageUsing(
+                        fn(TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                            ->prepend('company-logo-'),
+                    ),
                 TextInput::make('company_name')
                     ->required()
                     ->default('PT Fokus Inovasi Digital'),
@@ -19,24 +34,43 @@ class CompanyProfileForm
                 Textarea::make('about_subheading')
                     ->columnSpanFull(),
                 Textarea::make('description')
-                    ->columnSpanFull(),
+                    ->label('Description (About us)')
+                    ->columnSpanFull()->rows(5),
+                Textarea::make('vision')
+                    ->columnSpanFull()->rows(7),
+                Textarea::make('mission')
+                    ->columnSpanFull()->rows(7),
                 Textarea::make('address')
                     ->columnSpanFull(),
                 TextInput::make('phone')
-                    ->tel(),
+                    ->tel()->numeric(),
                 TextInput::make('email')
                     ->label('Email address')
                     ->email(),
-                Textarea::make('vision')
+                TextInput::make('quote'),
+                TextInput::make('website_url')->url(),
+                Repeater::make('social_media')
+                    ->schema([
+                        Select::make('platform')
+                            ->label('Social Media Platform')
+                            ->options([
+                                'facebook' => 'Facebook',
+                                'twitter' => 'Twitter',
+                                'instagram' => 'Instagram',
+                                'linkedin' => 'LinkedIn',
+                                'youtube' => 'YouTube',
+                                'tiktok' => 'TikTok',
+                                'github' => 'GitHub',
+                            ])
+                            ->required(),
+                        TextInput::make('url')
+                            ->label('URL')
+                            ->url()
+                            ->required(),
+                    ])
+                    ->label('Social Media Links')
+                    ->maxItems(3)
                     ->columnSpanFull(),
-                Textarea::make('mission')
-                    ->columnSpanFull(),
-                Textarea::make('quote')
-                    ->columnSpanFull(),
-                TextInput::make('logo'),
-                TextInput::make('social_media'),
-                TextInput::make('website_url')
-                    ->url(),
             ]);
     }
 }

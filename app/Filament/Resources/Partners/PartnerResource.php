@@ -22,7 +22,10 @@ class PartnerResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;
     protected static ?string $recordTitleAttribute = 'name';
     protected static string|\UnitEnum|null $navigationGroup = 'Content';
-
+    public static function getNavigationSort(): ?int
+    {
+        return 3;
+    }
     public static function form(Schema $schema): Schema
     {
         return PartnerForm::configure($schema);

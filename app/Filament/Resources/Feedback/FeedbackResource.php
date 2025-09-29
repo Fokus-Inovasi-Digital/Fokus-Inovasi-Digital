@@ -21,7 +21,10 @@ class FeedbackResource extends Resource
     protected static ?string $model = Feedback::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedFaceSmile;
     protected static string|\UnitEnum|null $navigationGroup = 'Inquiries';
-
+    public static function getNavigationSort(): ?int
+    {
+        return 7;
+    }
     public static function form(Schema $schema): Schema
     {
         return FeedbackForm::configure($schema);

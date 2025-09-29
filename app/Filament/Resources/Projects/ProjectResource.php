@@ -22,7 +22,10 @@ class ProjectResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedLightBulb;
     protected static ?string $recordTitleAttribute = 'title';
     protected static string|\UnitEnum|null $navigationGroup = 'Content';
-
+    public static function getNavigationSort(): ?int
+    {
+        return 2;
+    }
     public static function form(Schema $schema): Schema
     {
         return ProjectForm::configure($schema);

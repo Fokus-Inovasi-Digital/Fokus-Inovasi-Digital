@@ -19,12 +19,14 @@ use Filament\Tables\Table;
 class JobApplicationResource extends Resource
 {
     protected static ?string $model = JobApplication::class;
-
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentCheck;
     protected static ?string $recordTitleAttribute = 'full_name';
     protected static string|\UnitEnum|null $navigationGroup = 'HR & Careers';
     protected static ?string $label = 'Applicants';
-
+    public static function getNavigationSort(): ?int
+    {
+        return 5;
+    }
     public static function form(Schema $schema): Schema
     {
         return JobApplicationForm::configure($schema);

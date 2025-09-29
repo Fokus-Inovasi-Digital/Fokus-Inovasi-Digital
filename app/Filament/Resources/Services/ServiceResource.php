@@ -22,7 +22,10 @@ class ServiceResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCube;
     protected static ?string $recordTitleAttribute = 'title';
     protected static string|\UnitEnum|null $navigationGroup = 'Content';
-
+    public static function getNavigationSort(): ?int
+    {
+        return 1;
+    }
 
     public static function form(Schema $schema): Schema
     {

@@ -22,7 +22,10 @@ class CareerResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBriefcase;
     protected static ?string $recordTitleAttribute = 'title';
     protected static string|\UnitEnum|null $navigationGroup = 'HR & Careers';
-
+    public static function getNavigationSort(): ?int
+    {
+        return 4;
+    }
     public static function form(Schema $schema): Schema
     {
         return CareerForm::configure($schema);

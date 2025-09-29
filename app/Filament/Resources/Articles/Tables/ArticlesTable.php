@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\Articles\Tables;
 
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
@@ -18,18 +20,11 @@ class ArticlesTable
             ->columns([
                 TextColumn::make('title')
                     ->searchable(),
-                TextColumn::make('slug')
-                    ->searchable(),
                 ImageColumn::make('image'),
                 TextColumn::make('status')
                     ->badge(),
                 TextColumn::make('published_at')
                     ->dateTime()
-                    ->sortable(),
-                TextColumn::make('author.name')
-                    ->searchable(),
-                TextColumn::make('updated_by')
-                    ->numeric()
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -44,8 +39,11 @@ class ArticlesTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ActionGroup::make([
+                    ViewAction::make(),
+                    EditAction::make(),
+                    DeleteAction::make(),
+                ])
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

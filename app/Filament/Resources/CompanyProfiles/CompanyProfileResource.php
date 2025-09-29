@@ -2,8 +2,6 @@
 
 namespace App\Filament\Resources\CompanyProfiles;
 
-use App\Filament\Resources\CompanyProfiles\Pages\CreateCompanyProfile;
-use App\Filament\Resources\CompanyProfiles\Pages\EditCompanyProfile;
 use App\Filament\Resources\CompanyProfiles\Pages\ListCompanyProfiles;
 use App\Filament\Resources\CompanyProfiles\Pages\ViewCompanyProfile;
 use App\Filament\Resources\CompanyProfiles\Schemas\CompanyProfileForm;
@@ -21,7 +19,6 @@ class CompanyProfileResource extends Resource
     protected static ?string $model = CompanyProfile::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;
     protected static string|\UnitEnum|null $navigationGroup = 'Content';
-
     public static function form(Schema $schema): Schema
     {
         return CompanyProfileForm::configure($schema);
@@ -48,9 +45,7 @@ class CompanyProfileResource extends Resource
     {
         return [
             'index' => ListCompanyProfiles::route('/'),
-            'create' => CreateCompanyProfile::route('/create'),
             'view' => ViewCompanyProfile::route('/{record}'),
-            'edit' => EditCompanyProfile::route('/{record}/edit'),
         ];
     }
 }

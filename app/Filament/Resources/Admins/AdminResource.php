@@ -2,10 +2,7 @@
 
 namespace App\Filament\Resources\Admins;
 
-use App\Filament\Resources\Admins\Pages\CreateAdmin;
-use App\Filament\Resources\Admins\Pages\EditAdmin;
 use App\Filament\Resources\Admins\Pages\ListAdmins;
-use App\Filament\Resources\Admins\Pages\ViewAdmin;
 use App\Filament\Resources\Admins\Schemas\AdminForm;
 use App\Filament\Resources\Admins\Schemas\AdminInfolist;
 use App\Filament\Resources\Admins\Tables\AdminsTable;
@@ -50,9 +47,6 @@ class AdminResource extends Resource
     {
         return [
             'index' => ListAdmins::route('/'),
-            'create' => CreateAdmin::route('/create'),
-            'view' => ViewAdmin::route('/{record}'),
-            'edit' => EditAdmin::route('/{record}/edit'),
         ];
     }
 

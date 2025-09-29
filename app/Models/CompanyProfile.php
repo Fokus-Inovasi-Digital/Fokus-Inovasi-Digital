@@ -28,4 +28,7 @@ class CompanyProfile extends Model
     protected $casts = [
         'social_media' => 'array',
     ];
+    protected $attributes = [
+        'social_media' => '[]',
+    ];
 }

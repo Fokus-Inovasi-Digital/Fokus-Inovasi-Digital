@@ -21,7 +21,10 @@ class ContactMessageResource extends Resource
     protected static ?string $model = ContactMessage::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedEnvelope;
     protected static string|\UnitEnum|null $navigationGroup = 'Inquiries';
-
+    public static function getNavigationSort(): ?int
+    {
+        return 6;
+    }
     public static function form(Schema $schema): Schema
     {
         return ContactMessageForm::configure($schema);

@@ -22,6 +22,10 @@ class ArticleResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
     protected static ?string $recordTitleAttribute = 'title';
     protected static string|\UnitEnum|null $navigationGroup = 'Content';
+    public static function getNavigationSort(): ?int
+    {
+        return 0;
+    }
 
     public static function form(Schema $schema): Schema
     {

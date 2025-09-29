@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\Users\Tables;
 
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
@@ -23,25 +25,20 @@ class UsersTable
                 TextColumn::make('phone')
                     ->searchable(),
                 TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('role')
-                    ->badge(),
+                    ->dateTime('F d, Y')->sortable(),
                 TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
+                    ->dateTime('F d, Y')->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
+                    ->dateTime('F d, Y')->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ActionGroup::make([
+                    ViewAction::make(),
+                    EditAction::make(),
+                    DeleteAction::make(),
+                ])
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

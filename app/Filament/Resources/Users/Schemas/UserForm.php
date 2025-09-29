@@ -2,11 +2,9 @@
 
 namespace App\Filament\Resources\Users\Schemas;
 
-use Carbon\Carbon;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
 class UserForm
@@ -28,8 +26,9 @@ class UserForm
                     ->nullable(),
                 TextInput::make('password')
                     ->password()
-                    ->required(fn(string $operation): bool => $operation === 'create')
-                    ->dehydrated(fn(string $operation): bool => $operation === 'create'),
+                    ->dehydrated(fn($state) => filled($state))
+                    ->maxLength(255)
+                    ->label('Password'),
                 Select::make('role')
                     ->options(['admin' => 'Admin', 'user' => 'User'])
                     ->default('user')
