@@ -142,7 +142,7 @@ class DummySeeder extends Seeder
             Article::create([
                 'title' => $data['title'],
                 'slug' => Str::slug($data['title']),
-                'image' => 'article_' . Str::slug($data['title']) . '.jpg',
+                'image' => 'assets/default-articles.jpg',
                 'content' => $faker->paragraphs(6, true),
                 'gallery' => json_encode([]),
                 'category' => $data['category'],

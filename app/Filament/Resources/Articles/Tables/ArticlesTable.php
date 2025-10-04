@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\Articles\Tables;
 
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
@@ -16,38 +18,36 @@ class ArticlesTable
     {
         return $table
             ->columns([
-                TextColumn::make('title')
-                    ->searchable(),
-                TextColumn::make('slug')
-                    ->searchable(),
-                ImageColumn::make('image'),
-                TextColumn::make('category')
-                    ->badge(),
-                TextColumn::make('status')
-                    ->badge(),
-                TextColumn::make('published_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('author.name')
-                    ->searchable(),
-                TextColumn::make('updated_by')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                ImageColumn::make('image')
+                    ->label('Image')
+                    ->square()
+                    ->imageWidth(90)
+                    ->imageHeight(45)
+                    ->getStateUsing(function ($record) {
+                        if ($record->image) {
+                            return asset("storage/{$record->image}");
+                        }
+                        return asset('assets/default-articles.jpg');
+                    })
+                    ->extraImgAttributes(['title' => 'Articles Image', 'loading' => 'lazy', 'style' => 'border-radius: 0.375rem; object-fit: cover;']),
+                TextColumn::make('category')->badge()->default('-')->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('title')->limit(33)->searchable(),
+                TextColumn::make('slug')->badge()->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('status')->badge(),
+                TextColumn::make('published_at')->dateTime('F d, Y h:i A')->sortable(),
+                TextColumn::make('author.name')->searchable()->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ActionGroup::make([
+                    ViewAction::make(),
+                    EditAction::make(),
+                    DeleteAction::make(),
+                ])
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
