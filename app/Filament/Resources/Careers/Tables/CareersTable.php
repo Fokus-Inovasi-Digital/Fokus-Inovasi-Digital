@@ -28,7 +28,7 @@ class CareersTable
                 TextColumn::make('work_type')
                     ->badge()->alignCenter()
                     ->color(fn($state) => match ($state) { 'remote' => 'info', 'hybrid' => 'gray', default => 'warning', }),
-                TextColumn::make('applicants_count')
+                TextColumn::make('applications')
                     ->label('Applicants')->alignCenter()
                     ->tooltip('Number of applicants for this career')
                     ->getStateUsing(fn($record) => $record->Applications()->count()),

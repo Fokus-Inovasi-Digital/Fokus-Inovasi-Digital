@@ -3,8 +3,10 @@
 namespace App\Filament\Resources\Careers;
 
 use App\Filament\Resources\Careers\Pages\CreateCareer;
+use App\Filament\Resources\Careers\Pages\EditCareer;
 use App\Filament\Resources\Careers\Pages\ListCareers;
 use App\Filament\Resources\Careers\Pages\ViewCareer;
+use App\Filament\Resources\Careers\RelationManagers\ApplicationsRelationManager;
 use App\Filament\Resources\Careers\Schemas\CareerForm;
 use App\Filament\Resources\Careers\Schemas\CareerInfolist;
 use App\Filament\Resources\Careers\Tables\CareersTable;
@@ -43,7 +45,7 @@ class CareerResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ApplicationsRelationManager::class,
         ];
     }
 
@@ -52,6 +54,7 @@ class CareerResource extends Resource
         return [
             'index' => ListCareers::route('/'),
             'create' => CreateCareer::route('/create'),
+            'edit' => EditCareer::route('/{record}/edit'),
             'view' => ViewCareer::route('/{record}'),
         ];
     }

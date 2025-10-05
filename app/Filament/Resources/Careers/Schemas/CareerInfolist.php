@@ -37,6 +37,12 @@ class CareerInfolist
                                 'hybrid' => 'warning',
                                 default => 'default',
                             }),
+                        TextEntry::make('applications_count')
+                            ->label('Total Applicants')
+                            ->counts('applications')
+                            ->badge()
+                            ->icon('heroicon-o-users')
+                            ->color('primary'),
                     ]),
                 Section::make('Job Description')
                     ->icon('heroicon-o-document-text')
