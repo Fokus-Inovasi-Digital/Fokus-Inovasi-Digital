@@ -72,7 +72,7 @@ class DummySeeder extends Seeder
             'vision' => 'To be the leading digital transformation partner, recognized for excellence and innovation in technology solutions.', // Sesuai About Section
             'mission' => 'To deliver innovative digital solutions that empower businesses to achieve their full potential in the digital age.', // Sesuai About Section
             'quote' => 'Secure. Connect. Optimize. Innovate', // Sesuai About Section (Values)
-            'logo' => 'logo.png',
+            'logo' => null,
             'social_media' => null,
             'website_url' => 'https://fokusinovasidigital.com',
         ]);
@@ -194,34 +194,88 @@ class DummySeeder extends Seeder
         ]);
 
 
+        // // --- 7. Job Application (Pelamar) ---
+        // JobApplication::create([
+        //     'career_id' => $career->id,
+        //     'user_id' => $regularUser->id,
+        //     'full_name' => $regularUser->name,
+        //     'email' => $regularUser->email,
+        //     'phone' => $regularUser->phone,
+        //     'address' => $faker->address,
+        //     'cv_file' => 'cv/budi_cv.pdf',
+        //     'cover_letter_file' => 'cl/budi_cl.pdf',
+        //     'portfolio_file' => 'port/budi_port.zip',
+        //     'additional_notes' => 'Sangat tertarik dengan posisi ini karena pengalaman saya di Laravel sudah 5 tahun.',
+        //     'status' => 'pending',
+        // ]);
+
+
+        // // --- 8. Contact Messages (Pesan dari Contact Form) ---
+        // ContactMessage::create([
+        //     'name' => 'Siti Aisyah',
+        //     'email' => 'siti.aisyah@client.com',
+        //     'phone' => '087812345678',
+        //     'company' => 'PT Solusi Abadi',
+        //     'subject' => 'Pertanyaan Kerjasama Proyek Baru',
+        //     'message' => $faker->paragraph(4),
+        //     'status' => 'new',
+        //     'ip_address' => '127.0.0.1',
+        // ]);
+
+        for ($i = 0; $i < 9; $i++) {
+            ContactMessage::create([
+                'name' => $faker->name,
+                'email' => $faker->email,
+                'phone' => $faker->phoneNumber,
+                'company' => $faker->company,
+                'subject' => $faker->sentence,
+                'message' => $faker->paragraph,
+                'status' => 'new',
+                'ip_address' => $faker->ipv4,
+            ]);
+        }
+
         // --- 7. Job Application (Pelamar) ---
-        JobApplication::create([
-            'career_id' => $career->id,
-            'user_id' => $regularUser->id,
-            'full_name' => $regularUser->name,
-            'email' => $regularUser->email,
-            'phone' => $regularUser->phone,
-            'address' => $faker->address,
-            'cv_file' => 'cv/budi_cv.pdf',
-            'cover_letter_file' => 'cl/budi_cl.pdf',
-            'portfolio_file' => 'port/budi_port.zip',
-            'additional_notes' => 'Sangat tertarik dengan posisi ini karena pengalaman saya di Laravel sudah 5 tahun.',
-            'status' => 'pending',
-        ]);
 
+        $careerIds = Career::pluck('id')->toArray();
+        $userIds = User::where('role', 'user')->pluck('id')->toArray();
 
-        // --- 8. Contact Messages (Pesan dari Contact Form) ---
-        ContactMessage::create([
-            'name' => 'Siti Aisyah',
-            'email' => 'siti.aisyah@client.com',
-            'phone' => '087812345678',
-            'company' => 'PT Solusi Abadi',
-            'subject' => 'Pertanyaan Kerjasama Proyek Baru',
-            'message' => $faker->paragraph(4),
-            'status' => 'new',
-            'ip_address' => '127.0.0.1',
-        ]);
+        // Buat array untuk melacak kombinasi yang sudah digunakan
+        $usedCombinations = [];
 
+        // Buat 9 aplikasi kerja, pastikan setiap kombinasi unik
+        for ($i = 0; $i < 9; $i++) {
+            $foundUnique = false;
+            $attempts = 0;
+
+            while (!$foundUnique && $attempts < 100) { // Batasi percobaan untuk mencegah infinite loop
+                $career_id = $faker->randomElement($careerIds);
+                $user_id = $faker->randomElement($userIds);
+
+                // Buat kunci unik dari kombinasi
+                $key = $career_id . '-' . $user_id;
+
+                // Jika kombinasi belum pernah digunakan, gunakan
+                if (!isset($usedCombinations[$key])) {
+                    JobApplication::create([
+                        'career_id' => $career_id,
+                        'user_id' => $user_id,
+                        'full_name' => $faker->name,
+                        'email' => $faker->email,
+                        'phone' => $faker->phoneNumber,
+                        'address' => $faker->address,
+                        'cv_file' => 'cv/' . $faker->word . '.pdf',
+                        'cover_letter_file' => 'cl/' . $faker->word . '.pdf',
+                        'portfolio_file' => 'port/' . $faker->word . '.zip',
+                        'additional_notes' => $faker->sentence,
+                        'status' => 'pending',
+                    ]);
+                    $usedCombinations[$key] = true;
+                    $foundUnique = true;
+                }
+                $attempts++;
+            }
+        }
 
         // --- 9. Feedbacks (Dari User Login) ---
 
