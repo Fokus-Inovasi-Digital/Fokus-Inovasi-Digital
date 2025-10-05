@@ -15,7 +15,6 @@ class Solution extends Model
         'slug',
         'short_description',
         'content',
-        'is_featured',
         'category',
         'status',
         'published_at',
@@ -25,7 +24,6 @@ class Solution extends Model
 
     protected $casts = [
         'published_at' => 'datetime',
-        'is_featured' => 'boolean',
     ];
     public function createdBy(): BelongsTo
     {

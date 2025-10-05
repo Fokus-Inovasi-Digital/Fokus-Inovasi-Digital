@@ -30,7 +30,7 @@ class DummySeeder extends Seeder
 
         // --- 1. Buat User Admin & User Biasa ---
         $adminUser = User::create([
-            'name' => 'Super Admin',
+            'name' => 'Admin',
             'email' => 'admin@fokusinovasidigital.com',
             'phone' => '081122334455',
             'email_verified_at' => now(),
@@ -39,7 +39,7 @@ class DummySeeder extends Seeder
         ]);
 
         $regularUser = User::create([
-            'name' => 'Budi Pelamar',
+            'name' => 'Budi',
             'email' => 'budi@user.com',
             'phone' => '081234567890',
             'email_verified_at' => now(),
@@ -67,17 +67,13 @@ class DummySeeder extends Seeder
             'about_subheading' => 'PT Fokus Inovasi Digital is a leading technology company specializing in cutting-edge digital solutions that drive business transformation and growth.', // Sesuai About Text
             'description' => $faker->paragraphs(3, true),
             'address' => 'Jl. Jenderal Sudirman No. 123, Jakarta Selatan',
-            'phone' => '(021) 555-1234',
+            'phone' => '6285877524373',
             'email' => 'info@fokusinovasi.com',
             'vision' => 'To be the leading digital transformation partner, recognized for excellence and innovation in technology solutions.', // Sesuai About Section
             'mission' => 'To deliver innovative digital solutions that empower businesses to achieve their full potential in the digital age.', // Sesuai About Section
-            'quote' => 'Innovation, integrity, excellence, and customer-centricity drive everything we do.', // Sesuai About Section (Values)
+            'quote' => 'Secure. Connect. Optimize. Innovate', // Sesuai About Section (Values)
             'logo' => 'logo.png',
-            'social_media' => json_encode([
-                'facebook' => 'https://facebook.com/fokusinovasi',
-                'linkedin' => 'https://linkedin.com/company/fokusinovasi',
-                'instagram' => 'https://instagram.com/fokusinovasi',
-            ]),
+            'social_media' => null,
             'website_url' => 'https://fokusinovasidigital.com',
         ]);
 
@@ -111,7 +107,6 @@ class DummySeeder extends Seeder
                 'slug' => Str::slug($data['title']),
                 'short_description' => $data['description'],
                 'content' => $faker->paragraphs(5, true),
-                'is_featured' => $faker->boolean(40),
                 'category' => $data['category'],
                 'status' => $data['status'],
                 'published_at' => $data['status'] === 'published' ? now() : null,
@@ -142,9 +137,8 @@ class DummySeeder extends Seeder
             Article::create([
                 'title' => $data['title'],
                 'slug' => Str::slug($data['title']),
-                'image' => 'assets/default-articles.jpg',
+                'image' => null,
                 'content' => $faker->paragraphs(6, true),
-                'gallery' => json_encode([]),
                 'category' => $data['category'],
                 'status' => 'published',
                 'published_at' => $data['date'],
@@ -156,18 +150,19 @@ class DummySeeder extends Seeder
 
         // --- 5. Partners (Sesuai Partners Section) ---
         $partnerNames = [
-            ['name' => 'Tech Solutions Corp', 'logo' => 'TECH'],
-            ['name' => 'Bank Sentosa', 'logo' => 'BANK'],
-            ['name' => 'Cloud Infrastructure Inc', 'logo' => 'CLOUD'],
-            ['name' => 'AI Innovator Hub', 'logo' => 'AI'],
-            ['name' => 'Marketing Growth Agency', 'logo' => 'MARK'],
+            ['name' => 'Sectona'],
+            ['name' => 'Peris.ai'],
+            ['name' => 'Fortiner'],
+            ['name' => 'NetApp'],
+            ['name' => 'Cisco'],
+            ['name' => 'Omada'],
         ];
 
         foreach ($partnerNames as $data) {
             Partner::create([
                 'name' => $data['name'],
                 'description' => $faker->sentence(10),
-                'logo' => $data['logo'] . '.png',
+                'logo' => null,
                 'website_url' => $faker->url,
                 'created_by' => $adminUser->id,
                 'updated_by' => $adminUser->id,

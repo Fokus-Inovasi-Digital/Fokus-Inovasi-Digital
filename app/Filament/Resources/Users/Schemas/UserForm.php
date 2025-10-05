@@ -23,6 +23,7 @@ class UserForm
                     ->tel(),
                 DateTimePicker::make('email_verified_at')
                     ->label('Verified At')
+                    ->hint('Leave empty if not verified')
                     ->nullable(),
                 TextInput::make('password')
                     ->password()

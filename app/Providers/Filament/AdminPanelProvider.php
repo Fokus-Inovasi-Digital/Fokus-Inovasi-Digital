@@ -10,6 +10,7 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Enums\ThemeMode;
+use Filament\Navigation\NavigationItem;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -28,10 +29,14 @@ class AdminPanelProvider extends PanelProvider
             ->sidebarCollapsibleOnDesktop(true)
             ->id('admin')
             ->path('admin')
-            // ->login()
             ->favicon('https://cdn-icons-png.flaticon.com/512/5045/5045878.png')
             ->colors([
                 'primary' => '#fc6666',
+            ])
+            ->navigationItems([
+                NavigationItem::make('Landing Page')
+                    ->icon('heroicon-o-device-phone-mobile')
+                    ->url('/')
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
@@ -58,6 +63,6 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->defaultThemeMode(ThemeMode::Dark);
-            // ->brandLogo(asset('images/fokus-logo.svg'));
+        // ->brandLogo(asset('images/fokus-logo.svg'));
     }
 }

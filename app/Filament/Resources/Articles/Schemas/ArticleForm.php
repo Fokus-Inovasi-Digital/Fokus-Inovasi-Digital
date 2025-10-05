@@ -5,10 +5,8 @@ namespace App\Filament\Resources\Articles\Schemas;
 use App\Models\Article;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\RichEditor;
 use Filament\Schemas\Schema;
@@ -23,25 +21,20 @@ class ArticleForm
             ->columns(2)
             ->components([
                 TextInput::make('title')
-                    ->label('Title')
                     ->required()
                     ->maxLength(255)
                     ->reactive()
                     ->live(onBlur: true)
                     ->afterStateUpdated(function (Set $set, $state) {
                         $slug = Str::slug($state);
-
                         $existingSlug = Article::where('slug', $slug)->first();
-
                         if ($existingSlug) {
                             $slug = $slug . '-' . uniqid();
                         }
-
                         $set('slug', $slug);
                     }),
 
                 TextInput::make('slug')
-                    ->label('Slug')
                     ->hint('Generated from the title automatically.')
                     ->required()->readOnly()->disabled()->dehydrated(true),
 
@@ -52,23 +45,19 @@ class ArticleForm
                     ->disk('public')
                     ->maxSize(5 * 1024)
                     ->imageResizeMode('cover')
-                    // ->imageCropAspectRatio('16:9')
                     ->columnSpanFull(),
-
                 RichEditor::make('content')
-                    ->label('Content')
                     ->required()
                     ->columnSpanFull()
                     ->extraInputAttributes([
                         'style' => 'min-height: 200px; max-height: 500px; overflow-y: auto;',
                     ]),
-
-                Select::make('category')->label('Category')->options([
+                Select::make('category')->options([
                     'article' => 'Article',
                     'activity' => 'Activity',
                     'csr' => 'CSR',
                 ])->default('article')->required(),
-                Select::make('status')->label('Status')->options([
+                Select::make('status')->options([
                     'draft' => 'Draft',
                     'published' => 'Published',
                     'archived' => 'Archived',
@@ -79,7 +68,7 @@ class ArticleForm
                         $set('published_at', null);
                     }
                 }),
-                DateTimePicker::make('published_at')->label('Published At')->disabled()->readOnly()->dehydrated(true),
+                DateTimePicker::make('published_at')->disabled()->readOnly()->dehydrated(true),
                 Hidden::make('author_id')->dehydrated()->default(fn() => auth()->id()),
             ]);
     }

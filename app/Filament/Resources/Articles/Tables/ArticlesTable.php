@@ -27,13 +27,17 @@ class ArticlesTable
                         if ($record->image) {
                             return asset("storage/{$record->image}");
                         }
-                        return asset('assets/default-articles.jpg');
+                        return asset('assets/default-img.jpg');
                     })
                     ->extraImgAttributes(['title' => 'Articles Image', 'loading' => 'lazy', 'style' => 'border-radius: 0.375rem; object-fit: cover;']),
                 TextColumn::make('category')->badge()->default('-')->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('title')->limit(33)->searchable(),
                 TextColumn::make('slug')->badge()->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('status')->badge(),
+                TextColumn::make('status')->badge()->sortable()->color(fn(string $state): string => match ($state) {
+                    'published' => 'success',
+                    'draft' => 'gray',
+                    default => 'warning',
+                }),
                 TextColumn::make('published_at')->dateTime('F d, Y h:i A')->sortable(),
                 TextColumn::make('author.name')->searchable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),

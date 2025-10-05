@@ -24,7 +24,11 @@ class CompanyProfileInfolist
                             ->imageSize(150)
                             ->disk('public')
                             ->circular()
-                            ->alignCenter(),
+                            ->alignCenter()
+                            ->getStateUsing(fn($record) => $record->logo
+                                ? asset("storage/{$record->logo}")
+                                : asset('assets/default-img.jpg'))
+                            ->extraImgAttributes(['title' => 'Partner Logo', 'loading' => 'lazy', 'style' => 'border-radius: 0.375rem; object-fit: cover;']),
                         TextEntry::make('company_name')
                             ->label('Company Name'),
                     ]),

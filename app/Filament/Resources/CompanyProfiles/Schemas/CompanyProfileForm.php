@@ -20,7 +20,7 @@ class CompanyProfileForm
                     ->image()
                     ->required()
                     ->disk('public')
-                    ->directory('logo')
+                    ->directory('company-logo')
                     ->label('Company Logo')
                     ->columnSpanFull()
                     ->getUploadedFileNameForStorageUsing(

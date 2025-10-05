@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Careers;
 
 use App\Filament\Resources\Careers\Pages\CreateCareer;
-use App\Filament\Resources\Careers\Pages\EditCareer;
 use App\Filament\Resources\Careers\Pages\ListCareers;
 use App\Filament\Resources\Careers\Pages\ViewCareer;
 use App\Filament\Resources\Careers\Schemas\CareerForm;
@@ -54,7 +53,6 @@ class CareerResource extends Resource
             'index' => ListCareers::route('/'),
             'create' => CreateCareer::route('/create'),
             'view' => ViewCareer::route('/{record}'),
-            'edit' => EditCareer::route('/{record}/edit'),
         ];
     }
 }

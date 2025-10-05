@@ -52,9 +52,9 @@ class PartnerResource extends Resource
     {
         return [
             'index' => ListPartners::route('/'),
-            'create' => CreatePartner::route('/create'),
-            'view' => ViewPartner::route('/{record}'),
-            'edit' => EditPartner::route('/{record}/edit'),
+            // 'create' => CreatePartner::route('/create'),
+            // 'view' => ViewPartner::route('/{record}'),
+            // 'edit' => EditPartner::route('/{record}/edit'),
         ];
     }
 }

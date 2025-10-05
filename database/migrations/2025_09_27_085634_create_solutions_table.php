@@ -16,7 +16,6 @@ return new class extends Migration {
             $table->string('slug')->unique();
             $table->text('short_description');
             $table->longText('content');
-            $table->boolean('is_featured')->default(false);
             $table->enum('category', ['service', 'infrastructure', 'product'])->default('service');
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
             $table->timestamp('published_at')->nullable();

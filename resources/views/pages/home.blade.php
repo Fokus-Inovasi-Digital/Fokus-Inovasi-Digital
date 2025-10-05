@@ -90,7 +90,7 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-6xl font-bold mb-6 animate-blur-in">
-                    Our <span class="gradient-text">Services</span>
+                    Our <span class="gradient-text">Solutions</span>
                 </h2>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -116,7 +116,7 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20">
+    {{-- <section id="portfolio" class="py-20">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-6xl font-bold mb-6 animate-blur-in">
@@ -148,7 +148,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Partners Section -->
     <section id="partners" class="py-20">

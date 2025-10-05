@@ -50,7 +50,7 @@
     <!-- Preloader -->
     <div class="preloader" id="preloader" aria-hidden="true">
         <div class="preloader-content">
-            <div class="preloader-logo">Fokus Inovasi</div>
+            <div class="preloader-logo">Fokus ID</div>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
