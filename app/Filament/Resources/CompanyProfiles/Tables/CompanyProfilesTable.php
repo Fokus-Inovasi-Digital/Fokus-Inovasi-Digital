@@ -15,15 +15,14 @@ class CompanyProfilesTable
     {
         return $table
             ->columns([
-                ImageColumn::make('profile_picture')
+                ImageColumn::make('logo')
                     ->label('Company Logo')->alignCenter()
                     ->circular()->imageSize(50)
                     ->getStateUsing(function ($record) {
-                        if ($record->profile_picture) {
-                            return asset('storage/logo/' . $record->profile_picture);
+                        if ($record->logo) {
+                            return asset("storage/{$record->logo}");
                         }
-                        return 'https://media.licdn.com/dms/image/v2/D4D0BAQHsagCK6zI12w/company-logo_200_200/B4DZkqUvXlIcAI-/0/1757351704830/fokus_id_logo?e=2147483647&v=beta&t=p3Gmk1OmuQFZYMJhPlZWMdhtPHhAGTtYaNSTdLYb7P0';
-                        // return asset('storage/logo/logo.png');
+                        return asset('assets/default-img.jpg');
                     }),
                 TextColumn::make('company_name')
                     ->label('Company Name')

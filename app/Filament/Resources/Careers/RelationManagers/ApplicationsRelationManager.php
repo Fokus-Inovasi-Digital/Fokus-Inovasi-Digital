@@ -95,12 +95,16 @@ class ApplicationsRelationManager extends RelationManager
                                         'success' => 'reviewed',
                                     ]),
                             ]),
-                        TextEntry::make('address')
-                            ->label('Address')
-                            ->columnSpanFull(),
-                        TextEntry::make('additional_notes')
-                            ->label('Applicant Additional Notes')
-                            ->columnSpanFull(),
+                        Section::make('Additional Information')
+                            ->icon('heroicon-o-information-circle')
+                            ->columns(1)
+                            ->schema([
+                                TextEntry::make('address')
+                                    ->columnSpanFull(),
+                                TextEntry::make('additional_notes')
+                                    ->label('Applicant Additional Notes')
+                                    ->columnSpanFull(),
+                            ]),
                         Fieldset::make('Application Documents')
                             ->schema([
                                 Grid::make(3)

@@ -2,11 +2,8 @@
 
 namespace App\Filament\Resources\JobApplications;
 
-use App\Filament\Resources\JobApplications\Pages\CreateJobApplication;
-use App\Filament\Resources\JobApplications\Pages\EditJobApplication;
 use App\Filament\Resources\JobApplications\Pages\ListJobApplications;
 use App\Filament\Resources\JobApplications\Pages\ViewJobApplication;
-use App\Filament\Resources\JobApplications\Schemas\JobApplicationForm;
 use App\Filament\Resources\JobApplications\Schemas\JobApplicationInfolist;
 use App\Filament\Resources\JobApplications\Tables\JobApplicationsTable;
 use App\Models\JobApplication;
@@ -27,11 +24,6 @@ class JobApplicationResource extends Resource
     {
         return 5;
     }
-    public static function form(Schema $schema): Schema
-    {
-        return JobApplicationForm::configure($schema);
-    }
-
     public static function infolist(Schema $schema): Schema
     {
         return JobApplicationInfolist::configure($schema);
@@ -53,9 +45,6 @@ class JobApplicationResource extends Resource
     {
         return [
             'index' => ListJobApplications::route('/'),
-            'create' => CreateJobApplication::route('/create'),
-            'view' => ViewJobApplication::route('/{record}'),
-            'edit' => EditJobApplication::route('/{record}/edit'),
         ];
     }
 }

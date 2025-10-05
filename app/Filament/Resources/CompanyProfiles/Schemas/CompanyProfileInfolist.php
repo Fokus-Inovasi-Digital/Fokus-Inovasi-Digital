@@ -28,7 +28,7 @@ class CompanyProfileInfolist
                             ->getStateUsing(fn($record) => $record->logo
                                 ? asset("storage/{$record->logo}")
                                 : asset('assets/default-img.jpg'))
-                            ->extraImgAttributes(['title' => 'Partner Logo', 'loading' => 'lazy', 'style' => 'border-radius: 0.375rem; object-fit: cover;']),
+                            ->extraImgAttributes(['title' => 'Company Logo', 'loading' => 'lazy', 'style' => 'border-radius: 0.375rem; object-fit: cover;']),
                         TextEntry::make('company_name')
                             ->label('Company Name'),
                     ]),
@@ -89,7 +89,8 @@ class CompanyProfileInfolist
                                     ->url(fn($state) => $state)
                                     ->openUrlInNewTab(),
                             ])
-                            ->grid(3),
+                            ->grid(3)
+                            ->placeholder('none'),
                     ]),
                 Section::make('Metadata')
                     ->columns(1)

@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\Solutions\Schemas;
 
-use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -12,9 +11,9 @@ class SolutionInfolist
     public static function configure(Schema $schema): Schema
     {
         return $schema
-            ->columns(1) // Gunakan satu kolom untuk menampilkan info
+            ->columns(1)
             ->components([
-                Section::make('Solution Overview') // Bagian pertama untuk overview
+                Section::make('Solution Overview')
                     ->icon('heroicon-o-document-text')
                     ->columns(2)
                     ->schema([
@@ -26,8 +25,7 @@ class SolutionInfolist
                             ->label('Short Description')
                             ->columnSpanFull(),
                     ]),
-
-                Section::make('Solution Content') // Konten solusi
+                Section::make('Solution Content')
                     ->icon('heroicon-o-pencil-square')
                     ->columns(1)
                     ->schema([
@@ -37,8 +35,7 @@ class SolutionInfolist
                             ->html()
                             ->placeholder('-'),
                     ]),
-
-                Section::make('Solution Details') // Menampilkan status dan kategori solusi
+                Section::make('Solution Details')
                     ->icon('heroicon-o-information-circle')
                     ->columns(2)
                     ->schema([
@@ -61,7 +58,6 @@ class SolutionInfolist
                             ->icon('heroicon-o-calendar-days')
                             ->columnSpanFull(),
                     ]),
-
                 Section::make('Author Information')
                     ->icon('heroicon-o-user-circle')
                     ->columns(2)
@@ -71,7 +67,6 @@ class SolutionInfolist
                             ->placeholder('-')
                             ->icon('heroicon-o-user'),
                     ]),
-
                 Section::make('Timestamps')
                     ->icon('heroicon-o-clock')
                     ->columns(2)

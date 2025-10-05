@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('subject');
             $table->longText('message');
             $table->enum('type', ['bug', 'feature_request', 'improvement', 'compliment', 'complaint', 'other'])->default('other');
-            $table->enum('status', ['new', 'in_progress', 'resolved', 'closed'])->default('new');
+            $table->enum('status', ['new', 'closed'])->default('new');
             $table->timestamps();
 
             $table->index(['status', 'created_at']);

@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Feedback\Pages;
 
 use App\Filament\Resources\Feedback\FeedbackResource;
-use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListFeedback extends ListRecords
@@ -12,8 +11,6 @@ class ListFeedback extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        return [
-            CreateAction::make(),
-        ];
+        return [];
     }
 }

@@ -3,8 +3,6 @@
 namespace App\Filament\Resources\Feedback\Pages;
 
 use App\Filament\Resources\Feedback\FeedbackResource;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditFeedback extends EditRecord
@@ -13,9 +11,6 @@ class EditFeedback extends EditRecord
 
     protected function getHeaderActions(): array
     {
-        return [
-            ViewAction::make(),
-            DeleteAction::make(),
-        ];
+        return [];
     }
 }

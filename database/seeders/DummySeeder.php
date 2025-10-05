@@ -224,13 +224,25 @@ class DummySeeder extends Seeder
 
 
         // --- 9. Feedbacks (Dari User Login) ---
-        Feedback::create([
-            'user_id' => $regularUser->id,
-            'subject' => 'Request Fitur Dashboard',
-            'message' => 'Tolong tambahkan fitur untuk melihat status lamaran kerja yang sudah saya apply.',
-            'type' => 'feature_request',
-            'status' => 'new',
-        ]);
+
+        $feedbackTypes = ['bug', 'feature_request', 'improvement', 'compliment', 'complaint', 'other'];
+        $feedbackMessages = [
+            'bug' => 'There is an issue with the login page. The button is not responsive.',
+            'feature_request' => 'Please add the ability to save user preferences in the dashboard.',
+            'improvement' => 'The loading time of the website can be improved for faster user experience.',
+            'compliment' => 'I love the design of the homepage. It looks great!',
+            'complaint' => 'The application keeps crashing when I try to upload my resume.',
+            'other' => 'The app is good, but I would like to suggest some minor UI changes.'
+        ];
+        foreach ($feedbackTypes as $type) {
+            Feedback::create([
+                'user_id' => $regularUser->id,
+                'subject' => $faker->sentence,
+                'message' => $feedbackMessages[$type],
+                'type' => $type,
+                'status' => 'new',
+            ]);
+        }
 
         // Kembalikan Foreign Key Checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

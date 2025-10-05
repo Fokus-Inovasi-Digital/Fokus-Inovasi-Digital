@@ -40,20 +40,10 @@ class FeedbackResource extends Resource
         return FeedbackTable::configure($table);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
             'index' => ListFeedback::route('/'),
-            'create' => CreateFeedback::route('/create'),
-            'view' => ViewFeedback::route('/{record}'),
-            'edit' => EditFeedback::route('/{record}/edit'),
         ];
     }
 }
