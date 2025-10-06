@@ -25,6 +25,17 @@ class FeedbackResource extends Resource
     {
         return 7;
     }
+    public static function getNavigationBadge(): ?string
+    {
+        $newMessagesCount = Feedback::where('status', 'new')->count();
+        return $newMessagesCount > 0 ? (string) $newMessagesCount : null;
+    }
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        $newMessagesCount = Feedback::where('status', 'new')->count();
+        return $newMessagesCount > 5 ? 'warning' : 'primary';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return FeedbackForm::configure($schema);

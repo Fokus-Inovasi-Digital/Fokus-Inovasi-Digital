@@ -21,6 +21,16 @@ class ContactMessageResource extends Resource
     {
         return 6;
     }
+    public static function getNavigationBadge(): ?string
+    {
+        $newMessagesCount = ContactMessage::where('status', 'new')->count();
+        return $newMessagesCount > 0 ? (string) $newMessagesCount : null;
+    }
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        $newMessagesCount = ContactMessage::where('status', 'new')->count();
+        return $newMessagesCount > 5 ? 'warning' : 'primary';
+    }
 
     public static function infolist(Schema $schema): Schema
     {

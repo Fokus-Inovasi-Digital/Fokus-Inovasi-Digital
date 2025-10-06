@@ -26,6 +26,7 @@ class ContactMessagesTable
                     ->sortable(),
                 TextColumn::make('phone')
                     ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->limit(20),
                 TextColumn::make('company')
                     ->searchable()

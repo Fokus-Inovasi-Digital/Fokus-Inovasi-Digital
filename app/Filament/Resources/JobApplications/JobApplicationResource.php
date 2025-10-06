@@ -24,6 +24,16 @@ class JobApplicationResource extends Resource
     {
         return 5;
     }
+    public static function getNavigationBadge(): ?string
+    {
+        $newMessagesCount = JobApplication::where('status', 'pending')->count();
+        return $newMessagesCount > 0 ? (string) $newMessagesCount : null;
+    }
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        $newMessagesCount = JobApplication::where('status', 'pending')->count();
+        return $newMessagesCount > 5 ? 'warning' : 'primary';
+    }
     public static function infolist(Schema $schema): Schema
     {
         return JobApplicationInfolist::configure($schema);
