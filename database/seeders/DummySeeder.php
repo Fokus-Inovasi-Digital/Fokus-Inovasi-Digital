@@ -121,16 +121,22 @@ class DummySeeder extends Seeder
             ['title' => 'The Future of AI in Business', 'category' => 'article', 'date' => now()->subDays(12)],
             ['title' => 'Cloud Migration Best Practices', 'category' => 'article', 'date' => now()->subDays(17)],
             ['title' => 'Cybersecurity in 2024', 'category' => 'article', 'date' => now()->subDays(22)],
+            ['title' => '5G Technology and Its Impact on Industries', 'category' => 'article', 'date' => now()->subDays(3)],
+            ['title' => 'Exploring the Potential of Quantum Computing', 'category' => 'article', 'date' => now()->subDays(7)],
 
             // Kategori 'activity'
             ['title' => 'Tech Conference 2024: What to Expect', 'category' => 'activity', 'date' => now()->subDays(5)],
             ['title' => 'AI Workshop for Developers', 'category' => 'activity', 'date' => now()->subDays(10)],
             ['title' => 'Cybersecurity Seminar: The Need for Awareness', 'category' => 'activity', 'date' => now()->subDays(15)],
+            ['title' => 'Blockchain Hackathon: Innovating the Future', 'category' => 'activity', 'date' => now()->subDays(2)],
+            ['title' => 'AI for Healthcare: A Workshop for Professionals', 'category' => 'activity', 'date' => now()->subDays(8)],
 
             // Kategori 'csr' (Corporate Social Responsibility)
             ['title' => 'Our Commitment to Green Technology', 'category' => 'csr', 'date' => now()->subDays(8)],
             ['title' => 'Community Outreach: Bringing Tech to Rural Areas', 'category' => 'csr', 'date' => now()->subDays(13)],
             ['title' => 'Supporting Education: Tech Scholarships for Students', 'category' => 'csr', 'date' => now()->subDays(18)],
+            ['title' => 'Reducing Carbon Footprint with Sustainable Practices', 'category' => 'csr', 'date' => now()->subDays(4)],
+            ['title' => 'Volunteering for a Cause: Tech for Good', 'category' => 'csr', 'date' => now()->subDays(9)],
         ];
 
         foreach ($articleTitles as $data) {

@@ -3,48 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::where('status', 'published')
-            ->latest('published_at')
-            ->paginate(9);
+        $currentCategory = $request->query('category');
+        $validCategories = ['article', 'activity', 'csr'];
 
-        return view('pages.articles.index', compact('articles'));
-    }
+        $articlesQuery = Article::where('status', 'published');
 
-    public function category(string $category)
-    {
-        $allowedCategories = ['article', 'activity', 'csr'];
-        if (!in_array($category, $allowedCategories)) {
-            abort(404);
+        if ($currentCategory && in_array($currentCategory, $validCategories)) {
+            $articlesQuery->where('category', $currentCategory);
         }
 
-        $articles = Article::where('category', $category)
-            ->where('status', 'published')
-            ->latest('published_at')
-            ->paginate(9);
+        $articles = $articlesQuery->latest('published_at')
+            ->paginate(9)->withQueryString();
 
-        return view('pages.articles.index', [
-            'articles' => $articles,
-            'currentCategory' => $category
-        ]);
+        return view('pages.articles.index', compact('articles', 'currentCategory'));
     }
-
-    public function show(string $category, string $slug)
+    public function show(Article $article)
     {
-        $allowedCategories = ['article', 'activity', 'csr'];
-        if (!in_array($category, $allowedCategories)) {
-            abort(404);
-        }
-
-        $article = Article::where('category', $category)
-            ->where('slug', $slug)
-            ->where('status', 'published')
-            ->firstOrFail();
-
         $relatedArticles = Article::where('category', $article->category)
             ->where('status', 'published')
             ->where('id', '!=', $article->id)

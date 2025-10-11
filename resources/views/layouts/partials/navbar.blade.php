@@ -9,7 +9,8 @@
         <ul class="desktop-nav flex space-x-8 font-medium">
             <li><a href="{{ route('home') }}" class="nav-link hover:text-red-400 transition-colors">Home</a></li>
             <li><a href="/about" class="nav-link hover:text-red-400 transition-colors">About Us</a></li>
-            <li class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+            <li><a href="/articles" class="nav-link hover:text-red-400 transition-colors">News</a></li>
+            {{-- <li class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                 <button
                     class="nav-link font-medium flex items-center hover:text-red-400 transition-colors focus:outline-none"
                     :aria-expanded="open ? 'true' : 'false'" aria-haspopup="true">
@@ -34,7 +35,7 @@
                             class="dropdown-item block px-4 py-2 text-sm hover:bg-red-900/50 transition-colors">Activity</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
             <li class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                 <button
                     class="nav-link font-medium flex items-center hover:text-red-400 transition-colors focus:outline-none"
@@ -51,7 +52,8 @@
                     style="display: none;">
                     <div class="py-1">
                         <a href="#"
-                            class="dropdown-item block px-4 py-2 text-sm hover:bg-red-900/50 transition-colors">Solutions Overview</a>
+                            class="dropdown-item block px-4 py-2 text-sm hover:bg-red-900/50 transition-colors">Solutions
+                            Overview</a>
                         <a href="#"
                             class="dropdown-item block px-4 py-2 text-sm hover:bg-red-900/50 transition-colors">Services</a>
                         <a href="#"

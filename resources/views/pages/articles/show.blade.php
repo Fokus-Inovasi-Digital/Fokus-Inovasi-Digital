@@ -1,8 +1,7 @@
 <x-landing-layout>
-    <section class="py-20 pt-40 bg-gray-900 text-white">
+    <section class="py-20 pt-40">
         <div class="container mx-auto px-4">
             <article class="max-w-4xl mx-auto">
-                {{-- Judul dan Meta --}}
                 <header class="mb-8 text-center">
                     <h1 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">{{ $article->title }}</h1>
                     <div class="text-gray-400 text-lg">
@@ -12,19 +11,15 @@
                     </div>
                 </header>
 
-                {{-- Gambar Utama --}}
                 <figure class="mb-8">
-                    <img src="{{ asset('storage/' . $article->image) }}" alt="{{ $article->title }}"
+                    <img src="{{ $article->image ? asset("storage/{$article->image}") : asset('assets/default-img.jpg') }}" alt="{{ $article->title }}" loading="lazy"
                         class="w-full h-auto max-h-[500px] object-cover rounded-lg shadow-lg">
                 </figure>
 
-                {{-- Konten Artikel --}}
                 <div class="prose prose-invert lg:prose-xl max-w-none mx-auto">
                     {!! $article->content !!}
                 </div>
             </article>
-
-            {{-- Artikel Terkait --}}
             @if ($relatedArticles->isNotEmpty())
                 <div class="max-w-6xl mx-auto mt-20 pt-10 border-t border-gray-700">
                     <h2 class="text-3xl font-bold text-center mb-8">Related Articles</h2>
@@ -33,7 +28,7 @@
                             <a href="{{ route('articles.show', $related->slug) }}" class="block">
                                 <article
                                     class="glass rounded-xl overflow-hidden group cursor-pointer h-full flex flex-col transition-transform duration-300 hover:-translate-y-2">
-                                    <img src="{{ asset('storage/' . $related->image) }}" alt="{{ $related->title }}"
+                                    <img src="{{ $related->image ? asset("storage/{$related->image}") : asset('assets/default-img.jpg') }}" alt="{{ $related->title }}"
                                         class="h-40 w-full object-cover">
                                     <div class="p-4 flex flex-col flex-grow">
                                         <h3
@@ -47,7 +42,6 @@
                     </div>
                 </div>
             @endif
-
         </div>
     </section>
 </x-landing-layout>

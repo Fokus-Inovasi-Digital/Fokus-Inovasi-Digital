@@ -16,9 +16,8 @@ use App\Http\Controllers\{
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
-Route::get('/news', [ArticleController::class, 'index'])->name('articles.index');
-Route::get('news/{category}', [ArticleController::class, 'category'])->name('articles.category');
-Route::get('/news/{category}/{article}', [ArticleController::class, 'show'])->name('articles.show');
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
 
 Route::get('/solutions', [SolutionController::class, 'index'])->name('solutions.index');
 Route::get('/solutions/{category}', [SolutionController::class, 'category'])->name('solutions.category');
@@ -26,7 +25,6 @@ Route::get('/solutions/{category}/{solution}', [SolutionController::class, 'show
 
 Route::get('/careers', fn() => view('pages.careers.index'))->name('careers');
 Route::get('/contact', fn() => view('pages.contact'))->name('contact');
-
 Route::get('/contact', fn() => view('pages.contact'))->name('contact');
 
 
