@@ -1,55 +1,31 @@
 <x-landing-layout>
-    <section id="services" class="py-20 pt-40">
+    <section class="py-20 pt-40">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-6xl font-bold mb-6 animate-blur-in">
-                    Our <span class="gradient-text">Services</span>
+                <h2 class="text-4xl md:text-6xl font-bold mb-6">
+                    Our <span class="gradient-text">Solutions</span>
                 </h2>
+                <p class="text-gray-400">Explore our comprehensive range of services, products, and infrastructures.</p>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="glass rounded-xl p-8 hover:bg-white/5 transition-all cursor-pointer animate-blur-in">
-                    <div class="text-5xl mb-6">☁️</div>
-                    <h3 class="text-2xl font-bold mb-4">Cloud Solutions</h3>
-                    <p class="text-gray-400">Scalable cloud infrastructure and migration services for modern
-                        businesses.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="py-20">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-6xl font-bold mb-6 animate-blur-in">
-                    Our <span class="gradient-text">infrastructures</span>
-                </h2>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="glass rounded-xl p-8 hover:bg-white/5 transition-all cursor-pointer animate-blur-in">
-                    <div class="text-5xl mb-6">☁️</div>
-                    <h3 class="text-2xl font-bold mb-4">Cloud Solutions</h3>
-                    <p class="text-gray-400">Scalable cloud infrastructure and migration services for modern
-                        businesses.</p>
+            @foreach ($groupedSolutions as $category => $solutions)
+                <div class="mb-12">
+                    <h3 class="text-3xl font-bold mb-6 border-l-4 border-red-500 pl-4">
+                        {{ ucfirst($category) }}
+                    </h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        @foreach ($solutions as $solution)
+                            <a
+                                href="{{ route('solutions.show', ['category' => $solution->category, 'solution' => $solution->slug]) }}">
+                                <div class="glass p-6 rounded-xl hover:shadow-lg transition-shadow">
+                                    <h4 class="text-xl font-bold mb-2">{{ $solution->title }}</h4>
+                                    <p class="text-gray-400">{{ $solution->short_description }}</p>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="py-20">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-6xl font-bold mb-6 animate-blur-in">
-                    Our <span class="gradient-text">Products</span>
-                </h2>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="glass rounded-xl p-8 hover:bg-white/5 transition-all cursor-pointer animate-blur-in">
-                    <div class="text-5xl mb-6">☁️</div>
-                    <h3 class="text-2xl font-bold mb-4">SOC Application 100000$</h3>
-                    <p class="text-gray-400">Scalable cloud infrastructure and migration services for modern
-                        businesses.</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
 </x-landing-layout>
