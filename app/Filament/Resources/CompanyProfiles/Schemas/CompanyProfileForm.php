@@ -29,6 +29,7 @@ class CompanyProfileForm
                     ),
                 TextInput::make('company_name')
                     ->required()
+                    ->hint('will be displayed in landing page')
                     ->default('PT Fokus Inovasi Digital'),
                 TextInput::make('hero_subheading'),
                 Textarea::make('about_subheading')

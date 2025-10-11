@@ -16,7 +16,7 @@
                         </div>
                         <div>
                             <div class="font-semibold">Email</div>
-                            <div class="text-gray-400">info@fokusinovasidigital.com</div>
+                            <div class="text-gray-400">anto@fokusinovasidigital.com</div>
                         </div>
                     </div>
                     <div class="flex items-center space-x-4">

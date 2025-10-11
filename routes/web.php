@@ -1,16 +1,32 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{
+    HomeController,
+    AboutController,
+    ArticleController,
+    SolutionController,
+    PartnerController,
+    CareerController,
+    ContactController,
+    DashboardController,
+    ProfileController
+};
 
-Route::get('/', fn() => view('pages.home'))->name('home');
-Route::get('/solutions', fn() => view('pages.solutions.index'))->name('solutions');
-// Route::get('/projects', fn() => view('pages.projects.index'))->name('projects');
-Route::get('/news', fn() => view('pages.articles.index'))->name('articles');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+
+Route::get('/news', [ArticleController::class, 'index'])->name('articles.index');
+Route::get('news/{category}', [ArticleController::class, 'category'])->name('articles.category');
+Route::get('/news/{category}/{article}', [ArticleController::class, 'show'])->name('articles.show');
+
+Route::get('/solutions', [SolutionController::class, 'index'])->name('solutions.index');
+Route::get('/solutions/{category}', [SolutionController::class, 'category'])->name('solutions.category');
+Route::get('/solutions/{category}/{solution}', [SolutionController::class, 'show'])->name('solutions.show');
+
 Route::get('/careers', fn() => view('pages.careers.index'))->name('careers');
 Route::get('/contact', fn() => view('pages.contact'))->name('contact');
 
-Route::get('/about', fn() => view('pages.about'))->name('about');
 Route::get('/contact', fn() => view('pages.contact'))->name('contact');
 
 
@@ -24,4 +40,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

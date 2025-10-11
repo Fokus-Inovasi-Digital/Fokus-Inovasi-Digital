@@ -8,12 +8,6 @@
     <meta name="description"
         content="PT Fokus Inovasi Digital — delivering modern digital products, services and solutions. Explore our products, latest articles, partners, and career opportunities.">
 
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#fc6666">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Fokus Inovasi">
-
     <!-- Favicon Placeholders -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -31,12 +25,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/motion@11.3.0/dist/motion.min.js"></script>
     <script src="https://lenis.darkroom.engineering/bundle.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
-
-    <!-- Google reCAPTCHA v2 - Replace with your site key -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 
 <body>
@@ -58,11 +49,9 @@
     </div>
 
     @include('layouts.partials.navbar')
-    
+
     <main class="main-content">
         {{ $slot }}
-        
-        @include('layouts.partials.contact-section')
     </main>
 
     @include('layouts.partials.footer')

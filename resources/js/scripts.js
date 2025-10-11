@@ -316,30 +316,6 @@ function initNavbarBehavior() {
         lastScroll = currentScroll;
     });
 }
-
-// // Update active navigation link based on scroll position
-// function updateActiveNavLink() {
-//     const sections = document.querySelectorAll("section[id]");
-//     const navLinks = document.querySelectorAll(".nav-link");
-
-//     let currentSection = "";
-
-//     sections.forEach((section) => {
-//         const rect = section.getBoundingClientRect();
-//         if (rect.top <= 100 && rect.bottom >= 100) {
-//             currentSection = section.getAttribute("id");
-//         }
-//     });
-
-//     navLinks.forEach((link) => {
-//         link.classList.remove("text-red-400");
-//         const href = link.getAttribute("href");
-//         if (href === `#${currentSection}`) {
-//             link.classList.add("text-red-400");
-//         }
-//     });
-// }
-
 // Form validation functions
 function validateContactForm(data) {
     const errors = {};
@@ -388,43 +364,43 @@ function generateMathCaptcha() {
     }
 }
 
-// Partner carousel functionality
-function initPartnerCarousel() {
-    const carousel = document.querySelector(".partner-carousel");
-    if (!carousel) return;
+// // Partner carousel functionality
+// function initPartnerCarousel() {
+//     const carousel = document.querySelector(".partner-carousel");
+//     if (!carousel) return;
 
-    let isPaused = false;
+//     let isPaused = false;
 
-    // Pause on hover
-    carousel.addEventListener("mouseenter", () => {
-        isPaused = true;
-        const animation = document.querySelector(".animate-scroll");
-        if (animation && window.gsap) {
-            gsap.to(animation, { duration: 0.3, timeScale: 0 });
-        }
-    });
+//     // Pause on hover
+//     carousel.addEventListener("mouseenter", () => {
+//         isPaused = true;
+//         const animation = document.querySelector(".animate-scroll");
+//         if (animation && window.gsap) {
+//             gsap.to(animation, { duration: 0.3, timeScale: 0 });
+//         }
+//     });
 
-    // Resume on mouse leave
-    carousel.addEventListener("mouseleave", () => {
-        isPaused = false;
-        const animation = document.querySelector(".animate-scroll");
-        if (animation && window.gsap) {
-            gsap.to(animation, { duration: 0.3, timeScale: 1 });
-        }
-    });
+//     // Resume on mouse leave
+//     carousel.addEventListener("mouseleave", () => {
+//         isPaused = false;
+//         const animation = document.querySelector(".animate-scroll");
+//         if (animation && window.gsap) {
+//             gsap.to(animation, { duration: 0.3, timeScale: 1 });
+//         }
+//     });
 
-    // Keyboard navigation
-    const partnerLogos = carousel.querySelectorAll(".partner-logo");
-    partnerLogos.forEach((logo, index) => {
-        logo.setAttribute("tabindex", "0");
-        logo.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                logo.click();
-            }
-        });
-    });
-}
+//     // Keyboard navigation
+//     const partnerLogos = carousel.querySelectorAll(".partner-logo");
+//     partnerLogos.forEach((logo, index) => {
+//         logo.setAttribute("tabindex", "0");
+//         logo.addEventListener("keydown", (e) => {
+//             if (e.key === "Enter" || e.key === " ") {
+//                 e.preventDefault();
+//                 logo.click();
+//             }
+//         });
+//     });
+// }
 
 // Animation toggle functionality
 function toggleAnimations() {

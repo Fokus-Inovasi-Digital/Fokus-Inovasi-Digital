@@ -20,12 +20,11 @@
                 </div>
             </div>
             <div>
-                <h4 class="font-semibold mb-4">Services</h4>
+                <h4 class="font-semibold mb-4">Solutions</h4>
                 <ul class="space-y-2 text-gray-400">
-                    <li><a href="#" class="hover:text-red-400 transition-colors">Web Development</a></li>
-                    <li><a href="#" class="hover:text-red-400 transition-colors">Mobile Apps</a></li>
-                    <li><a href="#" class="hover:text-red-400 transition-colors">Cloud Solutions</a></li>
-                    <li><a href="#" class="hover:text-red-400 transition-colors">AI & ML</a></li>
+                    <li><a href="#" class="hover:text-red-400 transition-colors">Services</a></li>
+                    <li><a href="#" class="hover:text-red-400 transition-colors">Infrastructure</a></li>
+                    <li><a href="#" class="hover:text-red-400 transition-colors">Products</a></li>
                 </ul>
             </div>
             <div>
@@ -33,8 +32,8 @@
                 <ul class="space-y-2 text-gray-400">
                     <li><a href="/about" class="hover:text-red-400 transition-colors">About Us</a></li>
                     <li><a href="/careers" class="hover:text-red-400 transition-colors">Careers</a></li>
-                    <li><a href="/articles" class="hover:text-red-400 transition-colors">Articles</a></li>
-                    <li><a href="/projects" class="hover:text-red-400 transition-colors">Projects</a></li>
+                    <li><a href="/news" class="hover:text-red-400 transition-colors">News</a></li>
+                    <li><a href="/partners" class="hover:text-red-400 transition-colors">Partners</a></li>
                     <li><a href="/contact" class="hover:text-red-400 transition-colors">Contact</a></li>
                 </ul>
             </div>
