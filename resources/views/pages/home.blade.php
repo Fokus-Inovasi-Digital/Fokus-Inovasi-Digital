@@ -116,17 +116,19 @@
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($articles as $article)
-                    <article class="glass rounded-xl overflow-hidden animate-blur-in group cursor-pointer">
-                        <img src="{{ $article->image ? asset("storage/{$article->image}") : asset('assets/default-img.jpg') }}"
-                            alt="{{ $article->title }}" class="h-48 w-full object-cover" loading="lazy">
-                        <div class="p-6">
-                            <p class="text-sm text-gray-400 mb-2">{{ $article->published_at->format('F d, Y') }}
-                            </p>
-                            <h3 class="text-xl font-bold mb-2 group-hover:text-red-400 transition-colors">
-                                {{ $article->title }}</h3>
-                            <p class="text-gray-400">{{ Str::limit(strip_tags($article->content), 97) }}</p>
-                        </div>
-                    </article>
+                    <a href="{{ route('articles.show', ['article' => $article->slug]) }}" class="block">
+                        <article class="glass rounded-xl overflow-hidden animate-blur-in group cursor-pointer">
+                            <img src="{{ $article->image ? asset("storage/{$article->image}") : asset('assets/default-img.jpg') }}"
+                                alt="{{ $article->title }}" class="h-48 w-full object-cover" loading="lazy">
+                            <div class="p-6">
+                                <p class="text-sm text-gray-400 mb-2">{{ $article->published_at->format('F d, Y') }}
+                                </p>
+                                <h3 class="text-xl font-bold mb-2 group-hover:text-red-400 transition-colors">
+                                    {{ $article->title }}</h3>
+                                <p class="text-gray-400">{{ Str::limit(strip_tags($article->content), 97) }}</p>
+                            </div>
+                        </article>
+                    </a>
                 @endforeach
             </div>
         </div>

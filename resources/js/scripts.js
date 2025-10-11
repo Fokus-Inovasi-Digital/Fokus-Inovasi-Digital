@@ -18,11 +18,10 @@ document.addEventListener("DOMContentLoaded", function () {
     initLenis();
     initGSAPAnimations();
     initCustomCursor();
-    initNavbarBehavior();
-    initContactForm();
-    initPartnerCarousel();
-    initPWA();
-    generateMathCaptcha();
+    // initNavbarBehavior();
+    // initPartnerCarousel();
+    // initPWA();
+    generateMathCaptcha();// delete nanti
     initKeyboardHandlers();
     initMotionPreference();
 });
@@ -297,25 +296,25 @@ function initCustomCursor() {
 }
 
 // Navbar behavior
-function initNavbarBehavior() {
-    const navbar = document.querySelector(".navbar");
-    let lastScroll = 0;
+// function initNavbarBehavior() {
+//     const navbar = document.querySelector(".navbar");
+//     let lastScroll = 0;
 
-    window.addEventListener("scroll", () => {
-        const currentScroll = window.pageYOffset;
+//     window.addEventListener("scroll", () => {
+//         const currentScroll = window.pageYOffset;
 
-        if (currentScroll > 100) {
-            navbar.classList.add("scrolled");
-        } else {
-            navbar.classList.remove("scrolled");
-        }
+//         if (currentScroll > 100) {
+//             navbar.classList.add("scrolled");
+//         } else {
+//             navbar.classList.remove("scrolled");
+//         }
 
-        // Active nav link highlighting
-        updateActiveNavLink();
+//         // Active nav link highlighting
+//         updateActiveNavLink();
 
-        lastScroll = currentScroll;
-    });
-}
+//         lastScroll = currentScroll;
+//     });
+// }
 // Form validation functions
 function validateContactForm(data) {
     const errors = {};
