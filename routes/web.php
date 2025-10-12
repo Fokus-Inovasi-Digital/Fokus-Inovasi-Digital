@@ -33,8 +33,24 @@ Route::get('/storage-link', function () {
     return "Symlink already exists.";
 });
 
-Route::get('/linkstorage', function () {
-    Artisan::call('storage:link');
+Route::get('/linkstorage-manual', function () {
+    $target = storage_path('app/public');
+    $link = public_path('storage');
+
+    try {
+        // Cek apakah link sudah ada untuk menghindari error
+        if (file_exists($link)) {
+            return 'Link "public/storage" sudah ada.';
+        }
+
+        // Coba buat symlink
+        symlink($target, $link);
+        return 'Symbolic link berhasil dibuat.';
+
+    } catch (\Exception $e) {
+        // Tangkap error jika gagal
+        return 'Gagal membuat symbolic link: ' . $e->getMessage();
+    }
 });
 
 
