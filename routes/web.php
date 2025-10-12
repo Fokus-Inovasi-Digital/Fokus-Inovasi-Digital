@@ -33,6 +33,10 @@ Route::get('/storage-link', function () {
     return "Symlink already exists.";
 });
 
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
