@@ -1,9 +1,31 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    RewriteCond %{THE_REQUEST} \s/public [NC]
-    RewriteRule ^ - [L,R=404]
+    # ----------------------------------------------------------------------
+    # PILIH SALAH SATU DARI DUA METODE DI BAWAH INI
+    # ----------------------------------------------------------------------
 
+    # --- OPSI A: PAKSA 404 (Lebih Tegas) ---
+    # Hapus tanda pagar (#) dari 2 baris di bawah jika Anda ingin
+    # mydomain.com/public/admin menampilkan halaman 404 Not Found.
+    # RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /public/ [NC]
+    # RewriteRule . - [L,R=404]
+
+    # --- OPSI B: REDIRECT KE URL YANG BENAR (Sangat Direkomendasikan) ---
+    # Metode ini akan mengambil URL mydomain.com/public/admin dan secara
+    # otomatis mengalihkannya ke mydomain.com/admin. Ini lebih baik untuk SEO.
+    # Ini adalah metode yang aktif secara default di kode ini.
+    RewriteCond %{THE_REQUEST} \s/public/([^\s]*) [NC]
+    RewriteRule ^public/(.*)$ /$1 [R=301,L]
+
+
+    # ----------------------------------------------------------------------
+    # Aturan utama untuk mengarahkan semua request ke folder public
+    # JANGAN UBAH BAGIAN DI BAWAH INI
+    # ----------------------------------------------------------------------
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^(.*)$ public/$1 [L]
+
 </IfModule>
