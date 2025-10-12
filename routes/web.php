@@ -13,6 +13,27 @@ use App\Http\Controllers\{
     ProfileController
 };
 
+/*
+|--------------------------------------------------------------------------
+| Storage Symlink Route (Run once after deployment)
+|--------------------------------------------------------------------------
+*/
+Route::get('/storage-link', function () {
+    $targetFolder = base_path() . '/storage/app/public';
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/storage';
+
+    if (!file_exists($linkFolder)) {
+        try {
+            symlink($targetFolder, $linkFolder);
+            return "Symlink created successfully!";
+        } catch (\Exception $e) {
+            return "Failed to create symlink: " . $e->getMessage();
+        }
+    }
+    return "Symlink already exists.";
+});
+
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
