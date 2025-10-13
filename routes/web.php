@@ -13,47 +13,6 @@ use App\Http\Controllers\{
     ProfileController
 };
 
-/*
-|--------------------------------------------------------------------------
-| Storage Symlink Route (Run once after deployment)
-|--------------------------------------------------------------------------
-*/
-Route::get('/storage-link', function () {
-    $targetFolder = base_path() . '/storage/app/public';
-    $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/storage';
-
-    if (!file_exists($linkFolder)) {
-        try {
-            symlink($targetFolder, $linkFolder);
-            return "Symlink created successfully!";
-        } catch (\Exception $e) {
-            return "Failed to create symlink: " . $e->getMessage();
-        }
-    }
-    return "Symlink already exists.";
-});
-
-Route::get('/linkstorage-manual', function () {
-    $target = storage_path('app/public');
-    $link = public_path('storage');
-
-    try {
-        // Cek apakah link sudah ada untuk menghindari error
-        if (file_exists($link)) {
-            return 'Link "public/storage" sudah ada.';
-        }
-
-        // Coba buat symlink
-        symlink($target, $link);
-        return 'Symbolic link berhasil dibuat.';
-
-    } catch (\Exception $e) {
-        // Tangkap error jika gagal
-        return 'Gagal membuat symbolic link: ' . $e->getMessage();
-    }
-});
-
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
