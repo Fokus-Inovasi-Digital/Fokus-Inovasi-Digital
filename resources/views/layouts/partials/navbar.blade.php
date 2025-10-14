@@ -6,7 +6,7 @@
         </div>
 
         <!-- Desktop Navigation -->
-        <ul class="desktop-nav flex space-x-8 font-medium">
+        <ul class="desktop-nav hidden md:flex space-x-8 font-medium">
             <li><a href="{{ route('home') }}" class="nav-link hover:text-red-400 transition-colors">Home</a></li>
             <li><a href="/about" class="nav-link hover:text-red-400 transition-colors">About Us</a></li>
             <li><a href="/articles" class="nav-link hover:text-red-400 transition-colors">News</a></li>
@@ -39,35 +39,18 @@
             </li>
             <li><a href="/contact" class="nav-link hover:text-red-400 transition-colors">Contact</a></li>
         </ul>
-        {{-- @if (Route::has('login'))
-            <nav class="flex items-center justify-end gap-4">
-                @auth
-                    <a wire:navigate href="{{ url('/dashboard') }}"
-                        class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                        Dashboard
-                    </a>
-                @else
-                    <a wire:navigate href="{{ route('login') }}"
-                        class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">
-                        Log in
-                    </a>
-
-                    @if (Route::has('register'))
-                        <a wire:navigate href="{{ route('register') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                            Register
-                        </a>
-                    @endif
-                @endauth
-            </nav>
-        @endif --}}
-        <!-- Login Button -->
 
         @if (Route::has('login'))
             @auth
-                <a href="{{ url('/admin') }}" class="btn-primary hidden lg:inline-block">
-                    <span class="relative z-10">Dashboard</span>
-                </a>
+                @if (auth()->user()->role == 'admin')
+                    <a href="/admin" class="btn-primary hidden lg:inline-block">
+                        <span class="relative z-10">Admin Dashboard</span>
+                    </a>
+                @else
+                    <a href="/dashboard" class="btn-primary hidden lg:inline-block">
+                        <span class="relative z-10">Dashboard</span>
+                    </a>
+                @endif
             @else
                 <a href="{{ route('login') }}" wire:navigate class="btn-primary hidden lg:inline-block">
                     <span class="relative z-10">Login</span>
@@ -75,10 +58,9 @@
             @endauth
         @endif
 
-
         <!-- Mobile Hamburger -->
-        <div class="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu" role="button"
-            tabindex="0">
+        <div class="hamburger md:hidden" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu" role="button"
+            tabindex="0" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
@@ -94,6 +76,16 @@
         <a href="/news" class="nav-link" onclick="toggleMobileMenu()">News</a>
         <a href="/solutions" class="nav-link" onclick="toggleMobileMenu()">Solutions</a>
         <a href="/contact" class="nav-link" onclick="toggleMobileMenu()">Contact</a>
-        <a href="{{ route('login') }}" wire:navigate class="nav-link">Login</a>
+        @if (Route::has('login'))
+            @auth
+                @if (auth()->user()->role == 'admin')
+                    <a href="/admin" class="nav-link" onclick="toggleMobileMenu()">Admin Dashboard</a>
+                @else
+                    <a href="/dashboard" wire:navigate class="nav-link" onclick="toggleMobileMenu()">Dashboard</a>
+                @endif
+            @else
+                <a href="{{ route('login') }}" wire:navigate class="nav-link" onclick="toggleMobileMenu()">Login</a>
+            @endauth
+        @endif
     </div>
 </div>
