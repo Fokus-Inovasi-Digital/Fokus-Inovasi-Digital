@@ -14,17 +14,21 @@
                 <p class="text-gray-400 mb-4">Delivering innovative digital solutions that transform businesses.
                 </p>
                 <div class="flex space-x-4">
-                    <a href="https://www.linkedin.com/company/fokus-id" class="text-gray-400 hover:text-red-400 transition-colors">LinkedIn</a>
-                    <a href="https://api.whatsapp.com/send/?phone=6281292432654&text=Halo+PT+Fokus+Inovasi+Digital%2C+Saya+tertarik+untuk+mendapatkan+informasi+lebih+lanjut+mengenai+layanan+yang+kami+tawarkan.+Bisa+dibantu+untuk+diskusi" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">WhatsApp</a>
-                    <a href="https://github.com/Fokus-Inovasi-Digital" class="text-gray-400 hover:text-red-400 transition-colors">GitHub</a>
+                    <a href="https://www.linkedin.com/company/fokus-id"
+                        class="text-gray-400 hover:text-red-400 transition-colors">LinkedIn</a>
+                    <a href="https://api.whatsapp.com/send/?phone=6281292432654&text=Halo+PT+Fokus+Inovasi+Digital%2C+Saya+tertarik+untuk+mendapatkan+informasi+lebih+lanjut+mengenai+layanan+yang+kami+tawarkan.+Bisa+dibantu+untuk+diskusi"
+                        target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">WhatsApp</a>
+                    <a href="https://github.com/Fokus-Inovasi-Digital"
+                        class="text-gray-400 hover:text-red-400 transition-colors">GitHub</a>
                 </div>
             </div>
             <div>
                 <h4 class="font-semibold mb-4">Solutions</h4>
                 <ul class="space-y-2 text-gray-400">
-                    <li><a href="#" class="hover:text-red-400 transition-colors">Services</a></li>
-                    <li><a href="#" class="hover:text-red-400 transition-colors">Infrastructure</a></li>
-                    <li><a href="#" class="hover:text-red-400 transition-colors">Products</a></li>
+                    <li><a href="/solutions/service" class="hover:text-red-400 transition-colors">Services</a></li>
+                    <li><a href="/solutions/infrastructure"
+                            class="hover:text-red-400 transition-colors">Infrastructure</a></li>
+                    <li><a href="/solutions/product" class="hover:text-red-400 transition-colors">Products</a></li>
                 </ul>
             </div>
             <div>

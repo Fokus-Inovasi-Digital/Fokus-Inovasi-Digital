@@ -31,7 +31,7 @@
                         <a href="{{ route('solutions.category', ['category' => 'service']) }}"
                             class="dropdown-item block px-4 py-2 text-sm hover:bg-red-900/50 transition-colors">Services</a>
                         <a href="{{ route('solutions.category', ['category' => 'infrastructure']) }}"
-                            class="dropdown-item block px-4 py-2 text-sm hover:bg-red-900/50 transition-colors">Solutions</a>
+                            class="dropdown-item block px-4 py-2 text-sm hover:bg-red-900/50 transition-colors">Infrastructures</a>
                         <a href="{{ route('solutions.category', ['category' => 'product']) }}"
                             class="dropdown-item block px-4 py-2 text-sm hover:bg-red-900/50 transition-colors">Products</a>
                     </div>
@@ -73,7 +73,7 @@
     <div class="flex flex-col items-center justify-center h-full space-y-8 text-2xl">
         <a href="/" class="nav-link" onclick="toggleMobileMenu()">Home</a>
         <a href="/about" class="nav-link" onclick="toggleMobileMenu()">About Us</a>
-        <a href="/news" class="nav-link" onclick="toggleMobileMenu()">News</a>
+        <a href="/articles" class="nav-link" onclick="toggleMobileMenu()">News</a>
         <a href="/solutions" class="nav-link" onclick="toggleMobileMenu()">Solutions</a>
         <a href="/contact" class="nav-link" onclick="toggleMobileMenu()">Contact</a>
         @if (Route::has('login'))
