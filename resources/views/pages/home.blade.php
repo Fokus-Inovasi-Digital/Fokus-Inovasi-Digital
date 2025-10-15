@@ -9,7 +9,7 @@
                 @endif
             </h1>
             <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto animate-blur-in">
-                <span class="letter-animate">{{ $company->hero_subheading }}</span>
+                <span class="letter-animate">{{ $company->hero_subheading ?? 'Description isn\'t provided yet'}}</span>
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center animate-blur-in">
                 <a href="#cta" class="btn-primary text-lg px-8 py-3">
