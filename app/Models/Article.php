@@ -38,4 +38,8 @@ class Article extends Model
     {
         return $query->where('status', 'published')->whereNotNull('published_at')->orderBy('published_at', 'desc');
     }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

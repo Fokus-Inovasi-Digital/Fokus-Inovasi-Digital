@@ -22,4 +22,9 @@ class HomeController extends Controller
 
         return view('pages.home', compact('company', 'partners', 'articles', 'p1', 'p2'));
     }
+
+    public function about()
+    {
+        return view('pages.about');
+    }
 }

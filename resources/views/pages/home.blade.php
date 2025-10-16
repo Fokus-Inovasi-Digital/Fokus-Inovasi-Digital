@@ -9,7 +9,7 @@
                 @endif
             </h1>
             <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto animate-blur-in">
-                <span class="letter-animate">{{ $company->hero_subheading ?? 'Description isn\'t provided yet'}}</span>
+                <span class="letter-animate">{{ $company->hero_subheading ?? 'Description isn\'t provided yet' }}</span>
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center animate-blur-in">
                 <a href="#cta" class="btn-primary text-lg px-8 py-3">
@@ -93,9 +93,9 @@
                                 aria-label="Lihat detail {{ $partner->name }}">
                                 <img src="{{ $partner->logo ? asset("storage/{$partner->logo}") : asset('assets/default-img.jpg') }}"
                                     alt="{{ $partner->name }}" class="w-20 h-20 object-contain p-2">
-                                <!-- <div
+                                <div
                                     class="flex-shrink-0 w-32 h-32 glass rounded-xl flex items-center justify-center cursor-pointer partner-logo">
-                                    <div class="text-2xl font-bold gradient-text">{{ $partner->name }}</div> -->
+                                    <div class="text-2xl font-bold gradient-text">{{ $partner->name }}</div>
                                 </div>
                             </div>
                         </li>

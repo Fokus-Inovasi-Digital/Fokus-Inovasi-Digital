@@ -42,4 +42,8 @@ class Career extends Model
     {
         return $query->where('status', 'published');
     }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

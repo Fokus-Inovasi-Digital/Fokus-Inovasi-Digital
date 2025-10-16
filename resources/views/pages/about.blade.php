@@ -6,16 +6,16 @@
                     About <span class="gradient-text">Fokus ID</span>
                 </h2>
                 <p class="text-xl text-gray-400 max-w-3xl mx-auto animate-blur-in">
-                    {{ $cp->about_subheading }}
+                    {{ $companyProfile->about_subheading }}
                 </p>
             </div>
 
             <div class="text-center mb-16">
                 <div>
-                    <p class="text-xl text-gray-600 mb-6">{{ $cp->description }}</p>
+                    <p class="text-xl text-gray-600 mb-6">{{ $companyProfile->description }}</p>
 
-                    <p class="text-xl text-gray-600 mb-4"><strong>Vision:</strong> {{ $cp->vision }}</p>
-                    <p class="text-xl text-gray-600 mb-4"><strong>Mission:</strong> {{ $cp->mission }}</p>
+                    <p class="text-xl text-gray-600 mb-4"><strong>Vision:</strong> {{ $companyProfile->vision }}</p>
+                    <p class="text-xl text-gray-600 mb-4"><strong>Mission:</strong> {{ $companyProfile->mission }}</p>
                 </div>
             </div>
         </div>

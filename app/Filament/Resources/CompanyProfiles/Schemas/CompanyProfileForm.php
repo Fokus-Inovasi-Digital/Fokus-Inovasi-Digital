@@ -56,6 +56,7 @@ class CompanyProfileForm
                             ->label('Social Media Platform')
                             ->options([
                                 'facebook' => 'Facebook',
+                                'whatsapp' => 'WhatsApp',
                                 'twitter' => 'Twitter',
                                 'instagram' => 'Instagram',
                                 'linkedin' => 'LinkedIn',

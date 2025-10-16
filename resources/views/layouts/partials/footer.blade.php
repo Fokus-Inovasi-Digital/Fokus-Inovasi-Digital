@@ -2,7 +2,7 @@
     <div class="overflow-hidden border-t border-b border-gray-800 py-6 bg-black">
         <div class="marquee text-4xl font-extrabold uppercase tracking-tight md:text-6xl">
             <span class="gradient-text mx-12 md:mx-16 flex-shrink-0 cursor-pointer hover:text-red-400 transition-colors">
-                Fokus Inovasi Digital
+                {{ $companyProfile->quote ?? '' }}
             </span>
         </div>
     </div>
@@ -10,16 +10,17 @@
     <div class="container mx-auto px-4 py-12">
         <div class="grid md:grid-cols-4 gap-8">
             <div>
-                <h3 class="text-xl font-bold mb-4 gradient-text">Fokus Inovasi</h3>
-                <p class="text-gray-400 mb-4">Delivering innovative digital solutions that transform businesses.
-                </p>
+                <h3 class="text-xl font-bold mb-4 gradient-text">{{ $companyProfile->company_name ?? '-' }}</h3>
+                <p class="text-gray-400 mb-4">{{ $companyProfile->hero_subheading ?? '-' }}</p>
                 <div class="flex space-x-4">
-                    <a href="https://www.linkedin.com/company/fokus-id"
-                        class="text-gray-400 hover:text-red-400 transition-colors">LinkedIn</a>
-                    <a href="https://api.whatsapp.com/send/?phone=6281292432654&text=Halo+PT+Fokus+Inovasi+Digital%2C+Saya+tertarik+untuk+mendapatkan+informasi+lebih+lanjut+mengenai+layanan+yang+kami+tawarkan.+Bisa+dibantu+untuk+diskusi"
-                        target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">WhatsApp</a>
-                    <a href="https://github.com/Fokus-Inovasi-Digital"
-                        class="text-gray-400 hover:text-red-400 transition-colors">GitHub</a>
+                    @if (!empty($companyProfile->social_media))
+                        @foreach ($companyProfile->social_media as $social)
+                            <a href="{{ $social['url'] }}" target="_blank"
+                                class="text-gray-400 hover:text-red-400 transition-colors">
+                                {{ ucfirst($social['platform']) }}
+                            </a>
+                        @endforeach
+                    @endif
                 </div>
             </div>
             <div>
