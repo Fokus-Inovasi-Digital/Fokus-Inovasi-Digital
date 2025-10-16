@@ -42,15 +42,10 @@
 
         @if (Route::has('login'))
             @auth
-                @if (auth()->user()->role == 'admin')
-                    <a href="/admin" class="btn-primary hidden lg:inline-block">
-                        <span class="relative z-10">Admin Dashboard</span>
-                    </a>
-                @else
-                    <a href="/dashboard" class="btn-primary hidden lg:inline-block">
-                        <span class="relative z-10">Dashboard</span>
-                    </a>
-                @endif
+                <a href="{{ auth()->user()->role === 'admin' ? '/admin' : '/dashboard' }}"
+                    class="btn-primary hidden lg:inline-block">
+                    <span class="relative z-10">Dashboard</span>
+                </a>
             @else
                 <a href="{{ route('login') }}" wire:navigate class="btn-primary hidden lg:inline-block">
                     <span class="relative z-10">Login</span>

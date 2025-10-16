@@ -23,8 +23,10 @@ Route::get('/solutions', [SolutionController::class, 'index'])->name('solutions.
 Route::get('/solutions/{category}', [SolutionController::class, 'category'])->name('solutions.category');
 Route::get('/solutions/{category}/{solution}', [SolutionController::class, 'show'])->name('solutions.show');
 
-Route::get('/careers', fn() => view('pages.careers.index'))->name('careers');
-Route::get('/contact', fn() => view('pages.contact'))->name('contact');
+Route::get('/careers', [CareerController::class, 'index'])->name('careers.index');
+Route::get('/careers/{career:slug}', [CareerController::class, 'show'])->name('careers.show');
+
+Route::get('/partners', [PartnerController::class, 'index'])->name('partners');
 Route::get('/contact', fn() => view('pages.contact'))->name('contact');
 
 
