@@ -1,9 +1,9 @@
 <!-- Navbar -->
 <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="container mx-auto px-4 flex justify-between items-center">
-        <div class="text-2xl font-bold gradient-text">
+        <a href="{{ route('home') }}" class="text-2xl font-bold gradient-text">
             Fokus ID
-        </div>
+        </a>
 
         <!-- Desktop Navigation -->
         <ul class="desktop-nav hidden md:flex space-x-8 font-medium">

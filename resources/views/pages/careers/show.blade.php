@@ -4,7 +4,7 @@
             <h1 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">{{ $career->title }}</h1>
             <p class="text-lg text-gray-400 mb-8">{{ $career->location }} - {{ ucfirst($career->work_type) }}</p>
 
-            <div class="prose max-w-none text-gray-700">
+            <div class="prose prose-invert lg:prose-xl max-w-none mx-auto">
                 {!! $career->description !!}
             </div>
 
