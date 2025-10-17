@@ -9,6 +9,7 @@ use App\Http\Controllers\{
     CareerController,
     ContactController,
     DashboardController,
+    JobApplicationController,
     ProfileController
 };
 
@@ -28,7 +29,11 @@ Route::get('/careers/{career}', [CareerController::class, 'show'])->name('career
 Route::get('/partners', [PartnerController::class, 'index'])->name('partners');
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
-// ->middleware('throttle:1,1');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/careers/{career}/apply', [JobApplicationController::class, 'create'])->name('careers.apply.create');
+    Route::post('/careers/{career}/apply', [JobApplicationController::class, 'store'])->name('careers.apply.store');
+});
 
 
 Route::get('/dashboard', function () {
