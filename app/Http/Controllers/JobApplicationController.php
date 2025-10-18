@@ -41,25 +41,33 @@ class JobApplicationController extends Controller
         ]);
 
         $timestamp = time();
+        $userId = $user->id;
+        $paths = [];
 
-        $cv = $request->file('cv_file');
-        $cvFilename = "{$user->id}_{$timestamp}_cv_{$cv->getClientOriginalName()}";
-        $cvPath = $cv->storeAs('applicants/cv', $cvFilename, 'public');
+        $fileUploads = [
+            'cv_file' => ['type' => 'cv', 'folder' => 'applicants/cv'],
+            'cover_letter_file' => ['type' => 'coverletter', 'folder' => 'applicants/cl'],
+            'portfolio_file' => ['type' => 'portfolio', 'folder' => 'applicants/porto'],
+        ];
 
-        $coverLetterPath = null;
-        if ($request->hasFile('cover_letter_file')) {
-            $cl = $request->file('cover_letter_file');
-            $clFilename = "{$user->id}_{$timestamp}_coverletter_{$cl->getClientOriginalName()}";
-            $coverLetterPath = $cl->storeAs('applicants/cl', $clFilename, 'public');
+        foreach ($fileUploads as $requestKey => $details) {
+
+            if ($request->hasFile($requestKey)) {
+                $file = $request->file($requestKey);
+                $extension = $file->extension();
+
+                $filename = "{$userId}_{$timestamp}_{$details['type']}.{$extension}";
+
+                $paths[$requestKey] = $file->storeAs($details['folder'], $filename, 'public');
+            } else {
+                $paths[$requestKey] = null;
+            }
         }
 
-        $portfolioPath = null;
-        if ($request->hasFile('portfolio_file')) {
-            $pf = $request->file('portfolio_file');
-            $pfFilename = "{$user->id}_{$timestamp}_portfolio_{$pf->getClientOriginalName()}";
-            $portfolioPath = $pf->storeAs('applicants/porto', $pfFilename, 'public');
-        }
-        
+        $cvPath = $paths['cv_file'];
+        $coverLetterPath = $paths['cover_letter_file'];
+        $portfolioPath = $paths['portfolio_file'];
+
         JobApplication::create([
             'career_id' => $career->id,
             'user_id' => $user->id,
