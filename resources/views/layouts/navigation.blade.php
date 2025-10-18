@@ -19,6 +19,10 @@
                     <x-nav-link :href="route('userApply.index')" :active="request()->routeIs('userApply*')">
                         {{ __('My Applications') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('feedback.create')" :active="request()->routeIs('feedback.create')">
+                        {{ __('Send Feedback') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -45,8 +49,13 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
+                        @if (auth()->user()->role == 'admin')
+                            <x-dropdown-link href="/admin">
+                                {{ __('Admin Dashboard') }}
+                            </x-dropdown-link>
+                        @endif
                         <x-dropdown-link :href="route('home')">
-                            {{ __('Home') }}
+                            {{ __('Homepage') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -86,8 +95,12 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('userApply.index')" :active="request()->routeIs('my-applications.index')">
+            <x-responsive-nav-link :href="route('userApply.index')" :active="request()->routeIs('userApply*')">
                 {{ __('My Applications') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('feedback.create')" :active="request()->routeIs('feedback*')">
+                {{ __('Send Feedback') }}
             </x-responsive-nav-link>
         </div>
 
@@ -101,6 +114,14 @@
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+                @if (auth()->user()->role == 'admin')
+                    <x-responsive-nav-link href="/admin">
+                        {{ __('Admin Dashboard') }}
+                    </x-responsive-nav-link>
+                @endif
+                <x-responsive-nav-link :href="route('home')">
+                    {{ __('Homepage') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

@@ -9,6 +9,7 @@ use App\Http\Controllers\{
     CareerController,
     ContactController,
     DashboardController,
+    FeedbackController,
     JobApplicationController,
     ProfileController
 };
@@ -37,6 +38,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/my-applications', [JobApplicationController::class, 'userApply'])->name('userApply.index');
     Route::get('/my-applications/{slug}', [JobApplicationController::class, 'showUserApply'])->name('userApply.show');
+
+    Route::get('/feedback', [FeedbackController::class, 'create'])->name('feedback.create');
+    Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 });
 
 Route::middleware('auth')->group(function () {
