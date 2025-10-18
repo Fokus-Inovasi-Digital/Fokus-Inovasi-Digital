@@ -18,6 +18,18 @@ class FeedbackController extends Controller
 
     public function store(Request $request)
     {
+        $user = Auth::user();
+
+        $recentFeedback = Feedback::where('user_id', $user->id)
+            ->where('created_at', '>=', now()->subMinutes(10))
+            ->exists();
+
+        if ($recentFeedback) {
+            return back()->withErrors([
+                'message' => 'You can only submit feedback once every 10 minutes.'
+            ])->withInput();
+        }
+
         $validated = $request->validate([
             'subject' => ['required', 'string', 'max:255'],
             'type' => [
