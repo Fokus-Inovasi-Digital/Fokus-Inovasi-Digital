@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <x-application-logo />
                     </a>
                 </div>
 
@@ -46,16 +46,17 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
                         @if (auth()->user()->role == 'admin')
                             <x-dropdown-link href="/admin">
                                 {{ __('Admin Dashboard') }}
                             </x-dropdown-link>
+                        @else
+                            <x-dropdown-link :href="route('home')">
+                                {{ __('Homepage') }}
+                            </x-dropdown-link>
                         @endif
-                        <x-dropdown-link :href="route('home')">
-                            {{ __('Homepage') }}
+                        <x-dropdown-link :href="route('profile.edit')">
+                            {{ __('Profile') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -112,16 +113,17 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
                 @if (auth()->user()->role == 'admin')
                     <x-responsive-nav-link href="/admin">
                         {{ __('Admin Dashboard') }}
                     </x-responsive-nav-link>
+                @else
+                    <x-responsive-nav-link :href="route('home')">
+                        {{ __('Homepage') }}
+                    </x-responsive-nav-link>
                 @endif
-                <x-responsive-nav-link :href="route('home')">
-                    {{ __('Homepage') }}
+                <x-responsive-nav-link :href="route('profile.edit')">
+                    {{ __('Profile') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
