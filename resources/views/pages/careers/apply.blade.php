@@ -55,12 +55,13 @@
 
                         <div>
                             <label for="cv_file" class="block text-sm font-medium mb-2">Curriculum Vitae (CV) *</label>
-                            <input type="file" name="cv_file" id="cv_file" required @class([
-                                'w-full file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-red-600 file:text-white hover:file:bg-red-700 bg-black/30 border rounded-lg focus:border-red-400 focus:ring-1 focus:ring-red-400 transition-all outline-none',
-                                'border-red-500' => $errors->has('cv_file'),
-                                'border-gray-600' => !$errors->has('cv_file'),
-                            ])>
-                            <p class="text-gray-500 text-xs mt-2">Required. Format: PDF, DOC, DOCX. Max 2MB.</p>
+                            <input type="file" name="cv_file" id="cv_file" required accept=".pdf, .doc, .docx"
+                                @class([
+                                    'w-full file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-red-600 file:text-white hover:file:bg-red-700 bg-black/30 border rounded-lg focus:border-red-400 focus:ring-1 focus:ring-red-400 transition-all outline-none',
+                                    'border-red-500' => $errors->has('cv_file'),
+                                    'border-gray-600' => !$errors->has('cv_file'),
+                                ])>
+                            <p class="text-gray-500 text-xs mt-2">Required. Format: PDF, DOC, DOCX. Max 5MB.</p>
                             @error('cv_file')
                                 <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                             @enderror
@@ -69,7 +70,7 @@
                         <div>
                             <label for="cover_letter_file" class="block text-sm font-medium mb-2">Cover Letter</label>
                             <input type="file" name="cover_letter_file" id="cover_letter_file"
-                                @class([
+                                accept=".pdf, .doc, .docx" @class([
                                     'w-full file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-red-600 file:text-white hover:file:bg-red-700 bg-black/30 border rounded-lg focus:border-red-400 focus:ring-1 focus:ring-red-400 transition-all outline-none',
                                     'border-red-500' => $errors->has('cover_letter_file'),
                                     'border-gray-600' => !$errors->has('cover_letter_file'),
@@ -83,7 +84,7 @@
                         <div>
                             <label for="portfolio_file" class="block text-sm font-medium mb-2">Portfolio</label>
                             <input type="file" name="portfolio_file" id="portfolio_file"
-                                @class([
+                                accept=".pdf, .doc, .docx, .ppt,.pptx" @class([
                                     'w-full file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-red-600 file:text-white hover:file:bg-red-700 bg-black/30 border rounded-lg focus:border-red-400 focus:ring-1 focus:ring-red-400 transition-all outline-none',
                                     'border-red-500' => $errors->has('portfolio_file'),
                                     'border-gray-600' => !$errors->has('portfolio_file'),

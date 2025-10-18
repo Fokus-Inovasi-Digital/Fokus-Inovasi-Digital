@@ -6,6 +6,8 @@ use App\Models\Career;
 use App\Models\JobApplication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+
 class JobApplicationController extends Controller
 {
     public function create(Career $career)
@@ -34,9 +36,9 @@ class JobApplicationController extends Controller
             'full_name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|numeric',
-            'cv_file' => 'required|file|mimes:pdf,doc,docx|max:2048',
-            'cover_letter_file' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
-            'portfolio_file' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            'cv_file' => 'required|file|mimes:pdf,doc,docx|max:5120',
+            'cover_letter_file' => 'nullable|file|mimes:pdf,doc,docx|max:5120',
+            'portfolio_file' => 'nullable|file|mimes:pdf,doc,docx,ppt,pptx|max:5120',
             'additional_notes' => 'nullable|string|max:5000',
         ]);
 
@@ -83,5 +85,44 @@ class JobApplicationController extends Controller
 
         return redirect()->route('careers.show', $career)
             ->with('success', 'Your application has been submitted successfully!');
+    }
+
+    public function userApply()
+    {
+        $userId = Auth::id();
+
+        $applications = JobApplication::where('user_id', $userId)
+            ->with('career')
+            ->latest()
+            ->paginate(10);
+
+        return view('pages.applications.index', [
+            'applications' => $applications
+        ]);
+    }
+
+    public function showUserApply($slug)
+    {
+        $id = explode('-', $slug)[0];
+
+        $application = JobApplication::with('career')->findOrFail($id);
+
+        $expectedSlug = $this->buildSlug($application);
+        if ($slug !== $expectedSlug) {
+            return redirect()->route('userApply.show', $expectedSlug);
+        }
+
+        if (Auth::id() !== $application->user_id) {
+            abort(403, 'Unauthorized access');
+        }
+
+        return view('pages.applications.show', compact('application'));
+    }
+
+    private function buildSlug($application)
+    {
+        return $application->id . '-' .
+            Str::slug($application->full_name) . '-' .
+            Str::slug($application->career->title);
     }
 }

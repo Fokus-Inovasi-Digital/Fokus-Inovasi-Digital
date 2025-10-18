@@ -31,14 +31,13 @@ Route::get('/contact', [ContactController::class, 'create'])->name('contact.crea
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', fn() => view('dashboard'))->name('dashboard');
     Route::get('/careers/{career}/apply', [JobApplicationController::class, 'create'])->name('careers.apply.create');
     Route::post('/careers/{career}/apply', [JobApplicationController::class, 'store'])->name('careers.apply.store');
+
+    Route::get('/my-applications', [JobApplicationController::class, 'userApply'])->name('userApply.index');
+    Route::get('/my-applications/{slug}', [JobApplicationController::class, 'showUserApply'])->name('userApply.show');
 });
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
