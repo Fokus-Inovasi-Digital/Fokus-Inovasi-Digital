@@ -44,27 +44,38 @@
                 </h2>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="glass rounded-xl p-8 hover:bg-white/5 transition-all cursor-pointer animate-blur-in">
-                    <div class="text-5xl mb-6">☁️</div>
-                    <h3 class="text-2xl font-bold mb-4">Products</h3>
-                    <p class="text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi doloremque
-                        tempore ab eius dolorem officia harum itaque rerum, accusamus dolor enim eveniet beatae totam
-                        molestias sint voluptate officiis incidunt pariatur!</p>
-                </div>
-                <div class="glass rounded-xl p-8 hover:bg-white/5 transition-all cursor-pointer animate-blur-in">
-                    <div class="text-5xl mb-6">🔒</div>
-                    <h3 class="text-2xl font-bold mb-4">Services</h3>
-                    <p class="text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia impedit
-                        aut, sapiente ratione animi aliquid id eius. Perspiciatis itaque libero voluptates, reiciendis
-                        repellendus temporibus iusto debitis maxime. Nostrum, maxime non?</p>
-                </div>
-                <div class="glass rounded-xl p-8 hover:bg-white/5 transition-all cursor-pointer animate-blur-in">
-                    <div class="text-5xl mb-6">📊</div>
-                    <h3 class="text-2xl font-bold mb-4">Infrastructure</h3>
-                    <p class="text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
-                        distinctio nam quod voluptate quasi excepturi iste aspernatur repellendus molestiae? Corrupti
-                        fuga id consectetur beatae ab. Hic doloribus iusto iste nobis.</p>
-                </div>
+                <a href="{{ route('solutions.category', ['category' => 'products']) }}">
+                    <div class="glass rounded-xl p-8 hover:bg-white/5 transition-all cursor-pointer animate-blur-in">
+                        <div class="text-5xl mb-6">☁️</div>
+                        <h3 class="text-2xl font-bold mb-4">Products</h3>
+                        <p class="text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
+                            doloremque
+                            tempore ab eius dolorem officia harum itaque rerum, accusamus dolor enim eveniet beatae
+                            totam
+                            molestias sint voluptate officiis incidunt pariatur!</p>
+                    </div>
+                </a>
+                <a href="{{ route('solutions.category', ['category' => 'services']) }}">
+                    <div class="glass rounded-xl p-8 hover:bg-white/5 transition-all cursor-pointer animate-blur-in">
+                        <div class="text-5xl mb-6">🔒</div>
+                        <h3 class="text-2xl font-bold mb-4">Services</h3>
+                        <p class="text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
+                            impedit
+                            aut, sapiente ratione animi aliquid id eius. Perspiciatis itaque libero voluptates,
+                            reiciendis
+                            repellendus temporibus iusto debitis maxime. Nostrum, maxime non?</p>
+                    </div>
+                </a>
+                <a href="{{ route('solutions.category', ['category' => 'infrastructures']) }}">
+                    <div class="glass rounded-xl p-8 hover:bg-white/5 transition-all cursor-pointer animate-blur-in">
+                        <div class="text-5xl mb-6">📊</div>
+                        <h3 class="text-2xl font-bold mb-4">Infrastructure</h3>
+                        <p class="text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
+                            distinctio nam quod voluptate quasi excepturi iste aspernatur repellendus molestiae?
+                            Corrupti
+                            fuga id consectetur beatae ab. Hic doloribus iusto iste nobis.</p>
+                    </div>
+                </a>
             </div>
         </div>
     </section>

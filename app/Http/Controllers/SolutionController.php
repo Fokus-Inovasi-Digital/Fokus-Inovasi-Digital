@@ -20,7 +20,8 @@ class SolutionController extends Controller
 
     public function category($category)
     {
-        $validCategories = ['service', 'infrastructure', 'product'];
+        $validCategories = Solution::CATEGORIES;
+
         if (!in_array($category, $validCategories)) {
             abort(404);
         }

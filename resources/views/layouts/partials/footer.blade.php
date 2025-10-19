@@ -26,10 +26,12 @@
             <div>
                 <h4 class="font-semibold mb-4">Solutions</h4>
                 <ul class="space-y-2 text-gray-400">
-                    <li><a href="/solutions/service" class="hover:text-red-400 transition-colors">Services</a></li>
-                    <li><a href="/solutions/infrastructure"
-                            class="hover:text-red-400 transition-colors">Infrastructure</a></li>
-                    <li><a href="/solutions/product" class="hover:text-red-400 transition-colors">Products</a></li>
+                    <li><a href="{{ route('solutions.category', ['category' => 'services']) }}"
+                            class="hover:text-red-400 transition-colors">Services</a></li>
+                    <li><a href="{{ route('solutions.category', ['category' => 'infrastructures']) }}"
+                            class="hover:text-red-400 transition-colors">Infrastructures</a></li>
+                    <li><a href="{{ route('solutions.category', ['category' => 'products']) }}"
+                            class="hover:text-red-400 transition-colors">Products</a></li>
                 </ul>
             </div>
             <div>

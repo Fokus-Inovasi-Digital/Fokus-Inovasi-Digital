@@ -11,7 +11,7 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @forelse ($solutions as $solution)
                     <a
-                        href="{{ route('solutions.show', ['category' => $solution->category, 'solution' => $solution->slug]) }}">
+                        href="{{ route('solutions.show', ['category' => $solution->category_slug, 'solution' => $solution->slug]) }}">
                         <div class="glass p-6 rounded-xl hover:shadow-lg transition-shadow">
                             <h4 class="text-xl font-bold mb-2">{{ $solution->title }}</h4>
                             <p class="text-gray-400">{{ $solution->short_description }}</p>

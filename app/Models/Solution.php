@@ -37,4 +37,33 @@ class Solution extends Model
     {
         return 'slug';
     }
+
+    // Code to convert the category URL slug into its plural form (e.g., solutions/services, solutions/products)
+    public const CATEGORY_SERVICE = 'service';
+    public const CATEGORY_INFRASTRUCTURE = 'infrastructure';
+    public const CATEGORY_PRODUCT = 'product';
+
+    public const CATEGORIES = [
+        self::CATEGORY_SERVICE,
+        self::CATEGORY_INFRASTRUCTURE,
+        self::CATEGORY_PRODUCT,
+    ];
+
+    public static $categorySlugMap = [
+        'services' => self::CATEGORY_SERVICE,
+        'infrastructures' => self::CATEGORY_INFRASTRUCTURE,
+        'products' => self::CATEGORY_PRODUCT,
+    ];
+
+    public static function getCategorySlug(string $singularValue): string
+    {
+        $reverseMap = array_flip(self::$categorySlugMap);
+
+        return $reverseMap[$singularValue] ?? $singularValue;
+    }
+
+    public function getCategorySlugAttribute(): string
+    {
+        return self::getCategorySlug($this->category);
+    }
 }

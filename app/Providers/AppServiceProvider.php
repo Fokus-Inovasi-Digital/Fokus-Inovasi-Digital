@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\CompanyProfile;
+use App\Models\Solution;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -27,6 +29,11 @@ class AppServiceProvider extends ServiceProvider
             View::share('companyProfile', $companyProfile);
         }
 
-        // View::composer('*', \App\View\Composers\CompanyProfileComposer::class);
+        Route::bind('category', function (string $value) {
+            if (!array_key_exists($value, Solution::$categorySlugMap)) {
+                abort(404);
+            }
+            return Solution::$categorySlugMap[$value];
+        });
     }
 }

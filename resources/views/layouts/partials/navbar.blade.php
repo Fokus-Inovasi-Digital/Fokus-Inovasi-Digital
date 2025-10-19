@@ -8,8 +8,9 @@
         <!-- Desktop Navigation -->
         <ul class="desktop-nav hidden md:flex space-x-8 font-medium">
             <li><a href="{{ route('home') }}" class="nav-link hover:text-red-400 transition-colors">Home</a></li>
-            <li><a href="/about" class="nav-link hover:text-red-400 transition-colors">About Us</a></li>
-            <li><a href="/articles" class="nav-link hover:text-red-400 transition-colors">News</a></li>
+            <li><a href="{{ route('about') }}" class="nav-link hover:text-red-400 transition-colors">About Us</a></li>
+            <li><a href="{{ route('articles.index') }}" class="nav-link hover:text-red-400 transition-colors">News</a>
+            </li>
             <li class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                 <button
                     class="nav-link font-medium flex items-center hover:text-red-400 transition-colors focus:outline-none"
@@ -25,19 +26,20 @@
                     class="absolute z-50 mt-2 w-48 rounded-lg shadow-xl overflow-hidden glass nav-dropdown-menu"
                     style="display: none;">
                     <div class="py-1">
-                        <a href="/solutions"
+                        <a href="{{ route('solutions.index') }}"
                             class="dropdown-item block px-4 py-2 text-sm hover:bg-red-900/50 transition-colors">Solutions
                             Overview</a>
-                        <a href="{{ route('solutions.category', ['category' => 'service']) }}"
+                        <a href="{{ route('solutions.category', ['category' => 'services']) }}"
                             class="dropdown-item block px-4 py-2 text-sm hover:bg-red-900/50 transition-colors">Services</a>
-                        <a href="{{ route('solutions.category', ['category' => 'infrastructure']) }}"
+                        <a href="{{ route('solutions.category', ['category' => 'infrastructures']) }}"
                             class="dropdown-item block px-4 py-2 text-sm hover:bg-red-900/50 transition-colors">Infrastructures</a>
-                        <a href="{{ route('solutions.category', ['category' => 'product']) }}"
+                        <a href="{{ route('solutions.category', ['category' => 'products']) }}"
                             class="dropdown-item block px-4 py-2 text-sm hover:bg-red-900/50 transition-colors">Products</a>
                     </div>
                 </div>
             </li>
-            <li><a href="/contact" class="nav-link hover:text-red-400 transition-colors">Contact</a></li>
+            <li><a href="{{ route('contact.create') }}"
+                    class="nav-link hover:text-red-400 transition-colors">Contact</a></li>
         </ul>
 
         @if (Route::has('login'))
