@@ -69,7 +69,8 @@ class AdminPanelProvider extends PanelProvider
                     ->url('/profile')
                     ->icon('heroicon-o-user'),
             ])
-            ->defaultThemeMode(ThemeMode::Dark);
+            ->defaultThemeMode(ThemeMode::Dark)
+            ->spa();
         // ->brandLogo(asset('images/fokus-logo.svg'));
     }
 }
