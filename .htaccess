@@ -1,5 +1,21 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+
+    # 1. Blokir akses EKSTERNAL ke folder /public
+    # Ini adalah bagian yang paling penting untuk Anda
+    
+    # Cek apakah ini permintaan asli (bukan rewrite internal)
+    RewriteCond %{ENV:REDIRECT_STATUS} ^$
+    # Cek apakah URL yang diminta diawali dengan /public/
+    RewriteCond %{REQUEST_URI} ^/public/
+    # Jika ya, berikan 404 Not Found dan berhenti
+    RewriteRule ^ - [L,R=404]
+
+    # 2. Rewrite semua permintaan lain secara INTERNAL ke folder /public
+    
+    # Cek apakah URL-nya BUKAN /public/ (agar tidak loop)
     RewriteCond %{REQUEST_URI} !^/public/
-    RewriteRule ^(.*)$ /public/$1 [L,QSA]
+    # Ambil semua URL dan tambahkan /public di depannya
+    # [L] = Aturan Terakhir, [QSA] = Pertahankan Query String (cth: ?page=2)
+    RewriteRule ^(.*)$ public/$1 [L,QSA]
 </IfModule>
