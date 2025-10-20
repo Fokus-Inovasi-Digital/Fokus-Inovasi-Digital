@@ -1,13 +1,10 @@
-// app.js - PT Fokus Inovasi Digital Landing Page
+// scripts.js - PT Fokus Inovasi Digital Landing Page
 
 // Global variables
 let lenis;
 let animationsEnabled = true;
-let mathAnswer = 8; // Initial answer for 5 + 3
 
-// Initialize everything when DOM is loaded
 document.addEventListener("DOMContentLoaded", function () {
-    // Check for stored animation preference
     const storedPref = localStorage.getItem("animations-enabled");
     if (storedPref !== null) {
         animationsEnabled = JSON.parse(storedPref);
@@ -18,10 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initLenis();
     initGSAPAnimations();
     initCustomCursor();
-    // initNavbarBehavior();
-    // initPartnerCarousel();
-    // initPWA();
-    generateMathCaptcha();// delete nanti
+    initNavbarBehavior();
     initKeyboardHandlers();
     initMotionPreference();
 });
@@ -176,21 +170,6 @@ function initGSAPAnimations() {
             paused: !animationsEnabled,
         });
     }
-
-    // Navbar scroll animation
-    ScrollTrigger.create({
-        trigger: "body",
-        start: "top -100",
-        end: "bottom bottom",
-        onUpdate: (self) => {
-            const navbar = document.querySelector(".navbar");
-            if (self.direction === -1) {
-                navbar.classList.add("scrolled");
-            } else if (self.scroll < 100) {
-                navbar.classList.remove("scrolled");
-            }
-        },
-    });
 }
 
 // Motion One fallback for vanilla JS (when GSAP is not available)
@@ -296,71 +275,18 @@ function initCustomCursor() {
 }
 
 // Navbar behavior
-// function initNavbarBehavior() {
-//     const navbar = document.querySelector(".navbar");
-//     let lastScroll = 0;
+function initNavbarBehavior() {
+    const navbar = document.querySelector(".navbar");
 
-//     window.addEventListener("scroll", () => {
-//         const currentScroll = window.pageYOffset;
+    window.addEventListener("scroll", () => {
+        const currentScroll = window.pageYOffset;
 
-//         if (currentScroll > 100) {
-//             navbar.classList.add("scrolled");
-//         } else {
-//             navbar.classList.remove("scrolled");
-//         }
-
-//         // Active nav link highlighting
-//         updateActiveNavLink();
-
-//         lastScroll = currentScroll;
-//     });
-// }
-// Form validation functions
-function validateContactForm(data) {
-    const errors = {};
-
-    if (!data.name.trim()) {
-        errors.name = "Name is required";
-    }
-
-    if (!data.email.trim()) {
-        errors.email = "Email is required";
-    } else if (!isValidEmail(data.email)) {
-        errors.email = "Please enter a valid email address";
-    }
-
-    if (!data.message.trim()) {
-        errors.message = "Message is required";
-    }
-
-    return errors;
-}
-
-function clearFormErrors(formId) {
-    const form = document.getElementById(formId);
-    const errorElements = form.querySelectorAll('[id$="-error"]');
-    const inputs = form.querySelectorAll("input, textarea");
-
-    errorElements.forEach((el) => {
-        el.classList.add("hidden");
-        el.textContent = "";
+        if (currentScroll > 100) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
     });
-
-    inputs.forEach((input) => {
-        input.classList.remove("border-red-400");
-    });
-}
-
-// Math captcha generation
-function generateMathCaptcha() {
-    const num1 = Math.floor(Math.random() * 10) + 1;
-    const num2 = Math.floor(Math.random() * 10) + 1;
-    mathAnswer = num1 + num2;
-
-    const questionElement = document.getElementById("mathQuestion");
-    if (questionElement) {
-        questionElement.textContent = `${num1} + ${num2}`;
-    }
 }
 
 // // Partner carousel functionality
@@ -527,10 +453,3 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
-
-// Close modals when clicking outside
-document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("modal")) {
-        closeModal(e.target.id);
-    }
-});
