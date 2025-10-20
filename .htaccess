@@ -1,21 +1,52 @@
 <IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
     RewriteEngine On
 
-    # 1. Blokir akses EKSTERNAL ke folder /public
-    # Ini adalah bagian yang paling penting untuk Anda
+    # -------------------------------------------------------------
+    # BAGIAN 1: KEAMANAN (TUGAS "SATPAM" BARU)
+    # -------------------------------------------------------------
     
-    # Cek apakah ini permintaan asli (bukan rewrite internal)
+    # Blokir akses langsung ke URL /public/
     RewriteCond %{ENV:REDIRECT_STATUS} ^$
-    # Cek apakah URL yang diminta diawali dengan /public/
     RewriteCond %{REQUEST_URI} ^/public/
-    # Jika ya, berikan 404 Not Found dan berhenti
     RewriteRule ^ - [L,R=404]
 
-    # 2. Rewrite semua permintaan lain secara INTERNAL ke folder /public
-    
-    # Cek apakah URL-nya BUKAN /public/ (agar tidak loop)
-    RewriteCond %{REQUEST_URI} !^/public/
-    # Ambil semua URL dan tambahkan /public di depannya
-    # [L] = Aturan Terakhir, [QSA] = Pertahankan Query String (cth: ?page=2)
-    RewriteRule ^(.*)$ public/$1 [L,QSA]
+    # Blokir akses ke file dan folder sensitif di root
+    # Ini adalah bagian keamanan terpenting!
+    RewriteRule ^(\.env|artisan|composer\.json|composer\.lock|package\.json|webpack\.mix\.js) - [F,L,NC]
+    RewriteRule ^(app|config|database|resources|routes|storage|tests|vendor)/ - [F,L,NC]
+
+    # -------------------------------------------------------------
+    # BAGIAN 2: LOGIKA LARAVEL (TUGAS "RESEPSIONIS")
+    # -------------------------------------------------------------
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Handle X-XSRF-Token Header
+    RewriteCond %{HTTP:x-xsrf-token} .
+    RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # -------------------------------------------------------------
+    # BAGIAN 3: FRONT CONTROLLER (INTI LARAVEL)
+    # -------------------------------------------------------------
+
+    # A. Layani aset (CSS/JS/Gambar) jika ada di folder /public
+    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
+    RewriteRule ^(.*?)$ public/$1 [L,QSA]
+
+    # B. Kirim semua permintaan lain ke index.php
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ public/index.php [L,QSA]
+
 </IfModule>
